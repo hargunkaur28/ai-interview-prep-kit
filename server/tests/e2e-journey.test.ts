@@ -124,7 +124,7 @@ describe('Complete User Journey End-to-End (Integration)', { timeout: 30000 }, (
     };
 
     kit!.questions = [...otherCategories, ...preservedInCat, freshQ as any];
-    const { allocateSchedule } = await import('../src/domain/scheduler');
+    const { allocateSchedule } = await import('../src/domain/study-planner');
     kit!.schedule = allocateSchedule(kit!.schedule.days_available, kit!.questions, kit!.role.requirements);
     await kit!.save();
 

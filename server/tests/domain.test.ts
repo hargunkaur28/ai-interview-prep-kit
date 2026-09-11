@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { allocateSchedule } from '../src/domain/scheduler';
+import { allocateSchedule } from '../src/domain/study-planner';
 import { checkCoverage } from '../src/domain/coverage';
 import { validateAppendixAKit } from '@trao/shared';
 import { Requirement, Question, AppendixAKit } from '@trao/shared';

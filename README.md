@@ -120,7 +120,7 @@ The system strictly avoids "one giant prompt" that generates everything at once.
    - Evaluates the union of all `requirement_ids` referenced by questions.
    - Partitions uncovered requirements into `must` and `nice`.
    - Triggers Pass 2 gap-closure when must-haves remain uncovered.
-3. **Schedule Allocation (`domain/scheduler.ts`)**:
+3. **Schedule Allocation (`domain/study-planner.ts`)**:
    - Arithmetic distribution across exactly $N$ days (`1` to `60`).
    - Priority scoring ensures difficulty 3 and `must` requirements land on Day 1/early days, while culture/review lands on the final day.
    - All day durations are guaranteed integer minutes (no floats, no approximations).

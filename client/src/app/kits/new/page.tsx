@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
+import { API_BASE } from '@/lib/api';
 import {
   ArrowLeft,
   Sparkles,
@@ -36,6 +37,15 @@ const INITIAL_STAGES: StageState[] = [
   { stage: 'validating_kit', label: 'Validating final kit structure', status: 'pending' },
 ];
 
+const QUESTION_SUBSTEPS = [
+  { id: 'prep', title: 'Preparing question categories', desc: 'Analyzing extracted role requirements and seniority level' },
+  { id: 'tech', title: 'Synthesizing technical questions', desc: 'Covering core tech stack, systems architecture, and live problem-solving' },
+  { id: 'behav', title: 'Synthesizing behavioural questions', desc: 'Formatting STAR framework questions on collaboration and ownership' },
+  { id: 'sys', title: 'Synthesizing system-design questions', desc: 'Formulating scalability, reliability, and architectural trade-offs' },
+  { id: 'fit', title: 'Synthesizing company-fit questions', desc: 'Aligning interview scenarios with company values and team dynamics' },
+  { id: 'val', title: 'Validating & assembling question bank', desc: 'Verifying JSON schema invariants and question-to-requirement mapping' },
+];
+
 export default function NewKitPage() {
   const router = useRouter();
   const [jd, setJd] = useState('');
@@ -43,8 +53,23 @@ export default function NewKitPage() {
   const [days, setDays] = useState(5);
   const [isGenerating, setIsGenerating] = useState(false);
   const [stages, setStages] = useState<StageState[]>(INITIAL_STAGES);
+  const [questionSubstepIndex, setQuestionSubstepIndex] = useState(0);
   const [generalError, setGeneralError] = useState<string | null>(null);
   const [batchFileNote, setBatchFileNote] = useState<string | null>(null);
+
+  useEffect(() => {
+    const isQuestionGenRunning = stages.some(
+      s => s.stage === 'generating_questions' && s.status === 'running'
+    );
+    if (!isQuestionGenRunning) {
+      setQuestionSubstepIndex(0);
+      return;
+    }
+    const timer = setInterval(() => {
+      setQuestionSubstepIndex(prev => (prev < QUESTION_SUBSTEPS.length - 1 ? prev + 1 : prev));
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [stages]);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -85,7 +110,7 @@ export default function NewKitPage() {
     setStages(INITIAL_STAGES.map(s => ({ ...s, status: 'pending' })));
 
     try {
-      const response = await fetch('http://localhost:5000/api/kits/generate', {
+      const response = await fetch(`${API_BASE}/kits/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -240,6 +265,60 @@ export default function NewKitPage() {
                       <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5 line-clamp-1">
                         {st.message}
                       </p>
+                    )}
+
+                    {st.stage === 'generating_questions' && st.status === 'running' && (
+                      <div className="mt-3 bg-violet-50/75 dark:bg-violet-950/25 border border-violet-200/80 dark:border-violet-800/40 rounded-xl p-3.5 space-y-2.5 transition-all">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="font-semibold text-violet-700 dark:text-violet-300 flex items-center space-x-2">
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-600"></span>
+                            </span>
+                            <span>{QUESTION_SUBSTEPS[questionSubstepIndex].title}</span>
+                          </span>
+                          <span className="text-[10px] font-mono text-violet-600 dark:text-violet-400 bg-violet-100/80 dark:bg-violet-900/50 px-2 py-0.5 rounded-full font-medium">
+                            Step {questionSubstepIndex + 1} of {QUESTION_SUBSTEPS.length}
+                          </span>
+                        </div>
+
+                        <p className="text-[11px] text-slate-600 dark:text-slate-400">
+                          {QUESTION_SUBSTEPS[questionSubstepIndex].desc}
+                        </p>
+
+                        {/* Indeterminate Animated Progress Track */}
+                        <div className="relative h-1.5 w-full bg-violet-200/60 dark:bg-violet-900/40 rounded-full overflow-hidden">
+                          <div className="absolute inset-y-0 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-violet-500 animate-indeterminate-slide rounded-full" />
+                        </div>
+
+                        {/* Sub-step indicator pills */}
+                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 pt-1">
+                          {QUESTION_SUBSTEPS.map((sub, idx) => {
+                            const isCompleted = idx < questionSubstepIndex;
+                            const isCurrent = idx === questionSubstepIndex;
+                            return (
+                              <div
+                                key={sub.id}
+                                className={`text-[9px] py-1 px-1.5 rounded text-center truncate transition-all ${
+                                  isCompleted
+                                    ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400 font-medium'
+                                    : isCurrent
+                                    ? 'bg-violet-200 text-violet-900 dark:bg-violet-900/60 dark:text-violet-200 font-bold ring-1 ring-violet-400 shadow-sm'
+                                    : 'bg-slate-100 text-slate-400 dark:bg-slate-800/50 dark:text-slate-500'
+                                }`}
+                                title={sub.title}
+                              >
+                                {sub.title.replace('Synthesizing ', '').replace(' questions', '').replace('Preparing ', '').replace('Validating & assembling ', 'Assemble ')}
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        <div className="flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400 pt-0.5 border-t border-violet-100 dark:border-violet-900/40">
+                          <span>Combined single API request (capped at 700 tokens)</span>
+                          <span className="font-mono">Paced for 1,000 OTPM</span>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>

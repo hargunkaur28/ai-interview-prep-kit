@@ -4,7 +4,7 @@ import { Kit } from '../models/Kit';
 import { runPipeline } from '../services/pipeline';
 import { generateQuestionsForCategory, generateCompanyBrief } from '../services/groq';
 import { checkCoverage } from '../domain/coverage';
-import { allocateSchedule } from '../domain/scheduler';
+import { allocateSchedule } from '../domain/study-planner';
 import {
   InternalKit,
   InternalQuestion,

@@ -7,7 +7,6 @@ import {
   Question,
   Flashcard,
   QuestionCategory,
-  InternalQuestion,
 } from '@trao/shared';
 import { GroqTokenScheduler } from './scheduler';
 
@@ -206,24 +205,6 @@ export async function callGroqWithScheduler(options: CallGroqOptions): Promise<s
     scheduler.fallbackCount++;
     return generateFallbackResponse(systemPrompt, userPrompt);
   }
-}
-
-/**
- * Backward-compatible helper for callers.
- */
-export async function callGroqWithRetry(
-  systemPrompt: string,
-  userPrompt: string,
-  temperature: number = 0.2
-): Promise<string> {
-  return callGroqWithScheduler({
-    stage: 'general',
-    systemPrompt,
-    userPrompt,
-    maxTokens: 500,
-    temperature,
-    allowFallback: true,
-  });
 }
 
 /**

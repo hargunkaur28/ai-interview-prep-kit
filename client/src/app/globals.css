@@ -150,3 +150,13 @@ body {
     opacity: 0.5;
   }
 }
+
+/* ─── Indeterminate progress bar animation ───────────────────────────── */
+@keyframes indeterminate-slide {
+  0% { transform: translateX(-100%); width: 40%; }
+  50% { transform: translateX(80%); width: 60%; }
+  100% { transform: translateX(260%); width: 40%; }
+}
+.animate-indeterminate-slide {
+  animation: indeterminate-slide 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}

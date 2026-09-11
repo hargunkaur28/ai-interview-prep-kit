@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-09-11T20:34:40.552Z",
+  "generated_at": "2026-09-11T21:09:19.358Z",
   "kits": [
     {
       "id": "case-01-full-stack",
@@ -12,7 +12,7 @@
           "role": "Senior Full-Stack Engineer",
           "location": "Not Specified",
           "jd_chars": 430,
-          "researched_at": "2026-09-11T20:22:36.594Z",
+          "researched_at": "2026-09-11T20:56:59.648Z",
           "pages_used": [
             "https://posthog.com/",
             "https://posthog.com/handbook",
@@ -21,8 +21,8 @@
           ]
         },
         "company_brief": {
-          "summary": "PostHog is an all-in-one product analytics and engineering platform designed to help developers build successful products by providing tools like session replay, feature flags, and a data warehouse. The company's mission is to equip every developer to build successful products by making product context accessible to engineers, aiming to automate the iteration process and serve as the source of truth for product data.",
-          "what_they_do": "PostHog provides a suite of engineering-first tools, including product analytics, session replay, feature flags, experiments, and a data warehouse, enabling developers to make informed product decisions and ship code more effectively.",
+          "summary": "PostHog is an all-in-one product analytics and engineering platform designed to help developers build successful products by providing tools like session replay, feature flags, and a data warehouse. The company's mission is to equip every developer to build successful products by making product context accessible to engineers, and it is currently hiring for roles in AI research, backend engineering, and site reliability.",
+          "what_they_do": "PostHog provides a suite of developer-first tools including product analytics, session replay, feature flags, experiments, and a data warehouse to help engineers make product decisions and iterate faster.",
           "sources": [
             "https://posthog.com/",
             "https://posthog.com/handbook/why-does-posthog-exist",
@@ -72,8 +72,8 @@
               "r1"
             ],
             "category": "technical",
-            "prompt": "In a complex React application like PostHog's dashboard, how would you structure state management to handle real-time data updates (e.g., live session replays or feature flag changes) without causing excessive re-renders?",
-            "answer_outline": "Discuss separation of global vs. local state using libraries like Redux Toolkit or Zustand. Explain techniques like memoization, virtualization for lists, and debouncing/throttling data streams.",
+            "prompt": "In a complex React application with heavy state management, how do you optimize rendering performance for large lists or data-heavy components? Please discuss specific patterns like memoization, virtualization, or state colocation.",
+            "answer_outline": "Mentions specific tools like React.memo, useMemo, or virtualization libraries (e.g., react-window). Explains the trade-offs between client-side state and server-side data fetching to minimize re-renders.",
             "difficulty": 2
           },
           {
@@ -82,8 +82,8 @@
               "r2"
             ],
             "category": "technical",
-            "prompt": "Describe how you would design an event-driven pipeline in Node.js to ingest high-volume product analytics events into PostgreSQL while ensuring data consistency and handling backpressure.",
-            "answer_outline": "Outline the use of message brokers (e.g., Kafka/RabbitMQ) to decouple ingestion from processing. Detail strategies for batch processing, idempotency, and database connection pooling to manage load.",
+            "prompt": "Describe a scenario where you had to design an event-driven architecture using Node.js and PostgreSQL. How did you ensure data consistency and handle message ordering or idempotency?",
+            "answer_outline": "Discusses the use of transactional outbox patterns or reliable message queues (e.g., Kafka, SQS). Explains strategies for handling duplicate events and ensuring eventual consistency in the database.",
             "difficulty": 3
           },
           {
@@ -92,8 +92,8 @@
               "r3"
             ],
             "category": "behavioural",
-            "prompt": "Tell me about a time you identified a significant architectural flaw or code quality issue during a code review. How did you communicate this to the author, and what was the outcome?",
-            "answer_outline": "Describe the specific technical issue and the context of the review. Highlight the collaborative approach taken to resolve the issue and the long-term improvement implemented.",
+            "prompt": "Tell me about a time you identified a significant architectural flaw or code quality issue in a junior developer's pull request. How did you communicate this feedback to ensure it was constructive and led to learning?",
+            "answer_outline": "Provides a concrete example of balancing technical rigor with empathy and mentorship. Describes the outcome, such as the junior developer improving their skills or the team adopting a new best practice.",
             "difficulty": 2
           },
           {
@@ -102,9 +102,9 @@
               "r3"
             ],
             "category": "behavioural",
-            "prompt": "How do you approach mentoring a junior developer who is struggling with understanding the broader system architecture of a microservices-based platform?",
-            "answer_outline": "Explain methods for breaking down complex systems into digestible components. Mention specific tools or practices used to facilitate learning, such as pair programming or documentation.",
-            "difficulty": 1
+            "prompt": "How do you structure your code reviews to balance speed with quality? What specific metrics or signals do you look for to determine if a codebase is becoming a maintenance burden?",
+            "answer_outline": "Outlines a clear review process (e.g., checking for test coverage, readability, and security). Mentions specific signals like high cyclomatic complexity, lack of documentation, or frequent hotfixes.",
+            "difficulty": 2
           },
           {
             "id": "q5",
@@ -130,42 +130,43 @@
         "flashcards": [
           {
             "id": "f1",
-            "front": "What defines 'production experience' in TypeScript/React for a senior role?",
-            "back": "It involves managing complex state, optimizing bundle sizes, and handling type safety at scale in live environments, not just building prototypes.",
+            "front": "Key benefits of TypeScript in large-scale React applications?",
+            "back": "TypeScript provides static type checking that catches errors at compile time, improves code maintainability through explicit interfaces, and enhances developer productivity via better IDE autocompletion and refactoring tools.",
             "requirement_ids": [
               "r1"
             ]
           },
           {
             "id": "f2",
-            "front": "How do you handle data consistency in an event-driven Node.js/PostgreSQL architecture?",
-            "back": "Use outbox patterns or saga orchestration to ensure eventual consistency between microservices and the database, handling idempotency and retries.",
+            "front": "How does event-driven architecture improve microservices scalability?",
+            "back": "It decouples services by allowing them to communicate asynchronously via message brokers, reducing direct dependencies and enabling independent scaling based on specific event throughput.",
             "requirement_ids": [
               "r2"
             ]
           },
           {
             "id": "f3",
-            "front": "What is the primary goal of code reviews for a senior engineer?",
-            "back": "To enforce architectural standards, prevent technical debt, and mentor juniors on best practices rather than just fixing syntax errors.",
+            "front": "What is the primary role of a senior engineer in code reviews?",
+            "back": "To ensure code quality, adherence to architectural standards, and security best practices while mentoring junior developers on design patterns and clean code principles.",
             "requirement_ids": [
               "r3"
             ]
           },
           {
             "id": "f4",
-            "front": "Why use Terraform with Kubernetes in AWS?",
-            "back": "Terraform manages the underlying AWS infrastructure (VPCs, EKS clusters) as code, ensuring reproducible and version-controlled infrastructure provisioning.",
+            "front": "Why use Terraform for managing AWS infrastructure?",
+            "back": "Terraform allows Infrastructure as Code (IaC), enabling version-controlled, reproducible, and automated provisioning of AWS resources, which reduces manual errors and ensures consistency across environments.",
             "requirement_ids": [
               "r4"
             ]
           },
           {
             "id": "f5",
-            "front": "How do you balance mentoring with individual contribution?",
-            "back": "Allocate dedicated time for code reviews and pairing sessions, while ensuring your own high-impact tasks (like architecture design) are prioritized.",
+            "front": "How does Kubernetes enhance Node.js microservice deployment?",
+            "back": "Kubernetes automates container orchestration, providing self-healing, load balancing, and horizontal scaling for Node.js services, ensuring high availability and efficient resource utilization.",
             "requirement_ids": [
-              "r3"
+              "r2",
+              "r4"
             ]
           }
         ],
@@ -177,7 +178,7 @@
               "focus": "Core Must-Have Requirements & Technical Fundamentals",
               "question_ids": [
                 "q2",
-                "q4"
+                "q6"
               ],
               "minutes": 50
             },
@@ -209,7 +210,7 @@
               "day": 5,
               "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
               "question_ids": [
-                "q6"
+                "q4"
               ],
               "minutes": 35
             }
@@ -234,24 +235,24 @@
           "role": "Backend Developer",
           "location": "Not Specified",
           "jd_chars": 46,
-          "researched_at": "2026-09-11T20:25:37.531Z",
+          "researched_at": "2026-09-11T21:00:00.653Z",
           "pages_used": [
             "https://example.com/"
           ]
         },
         "company_brief": {
-          "summary": "The provided website is a placeholder domain used for documentation examples and is not an active corporate entity. No specific business operations, products, or interview processes can be derived from this source.",
-          "what_they_do": "The domain serves as a reserved example for technical documentation and does not represent a functioning company with a core product or domain.",
+          "summary": "The provided website is a placeholder domain intended for use in documentation examples. No specific company information, products, or interview processes are available.",
+          "what_they_do": "The domain is reserved for use in documentation examples without needing permission and is not intended for operational use.",
           "sources": [
             "https://example.com/"
           ]
         },
         "role": {
           "title": "Backend Developer",
-          "seniority": "Junior",
+          "seniority": "Not specified",
           "responsibilities": [
-            "Develop and maintain backend services using Python",
-            "Containerize applications using Docker"
+            "Develop backend systems using Python",
+            "Manage containerized environments with Docker"
           ],
           "requirements": [
             {
@@ -275,28 +276,29 @@
               "r1"
             ],
             "category": "technical",
-            "prompt": "Explain the difference between a list and a tuple in Python. In what specific backend scenario would you choose a tuple over a list for data integrity?",
-            "answer_outline": "Lists are mutable; tuples are immutable. Use tuples for fixed data structures (like database rows or config settings) to prevent accidental modification.",
-            "difficulty": 1
+            "prompt": "Explain the Global Interpreter Lock (GIL) in Python. How does it impact multi-threaded performance, and what are the standard strategies for achieving true parallelism in a backend service?",
+            "answer_outline": "Define GIL as a mutex that protects access to Python objects, preventing multiple threads from executing Python bytecode simultaneously. Suggest using multiprocessing for CPU-bound tasks or asynchronous I/O (asyncio) for I/O-bound tasks to bypass GIL limitations.",
+            "difficulty": 2
           },
           {
             "id": "q2",
             "requirement_ids": [
-              "r1"
+              "r2"
             ],
             "category": "technical",
-            "prompt": "How does Python's Global Interpreter Lock (GIL) impact the performance of a multi-threaded backend API? What is the standard alternative for CPU-bound tasks?",
-            "answer_outline": "GIL prevents multiple native threads from executing Python bytecodes simultaneously, limiting CPU-bound parallelism. Use multiprocessing or async I/O for CPU-bound tasks to bypass GIL limitations.",
+            "prompt": "Describe the difference between a Docker image and a container. How would you optimize a Python application's Docker image to minimize its size and improve build times?",
+            "answer_outline": "Clarify that an image is a static template while a container is a running instance of that image. Recommend using multi-stage builds, slim base images (e.g., python:3.9-slim), and proper .dockerignore files to reduce layer size.",
             "difficulty": 2
           },
           {
             "id": "q3",
             "requirement_ids": [
+              "r1",
               "r2"
             ],
-            "category": "technical",
-            "prompt": "Describe the structure of a multi-stage Docker build. Why is this approach preferred for production Python applications?",
-            "answer_outline": "Separates build dependencies (compilers, pip) from runtime dependencies. Reduces final image size and attack surface by excluding unnecessary build tools.",
+            "category": "behavioural",
+            "prompt": "Tell me about a time you encountered a difficult bug in a Python application that was only reproducible in the Dockerized environment. How did you isolate and resolve the issue?",
+            "answer_outline": "Describe the specific debugging steps taken (e.g., logging, environment variable checks, dependency version mismatches). Highlight the resolution and any preventive measures implemented, such as adding integration tests or standardizing base images.",
             "difficulty": 2
           },
           {
@@ -304,23 +306,13 @@
             "requirement_ids": [
               "r2"
             ],
-            "category": "technical",
-            "prompt": "You have a Python service that fails to start inside a Docker container due to a missing system library. How do you debug and resolve this issue?",
-            "answer_outline": "Inspect container logs and use `docker exec` to enter the shell for manual testing. Identify the missing library, add it to the Dockerfile (e.g., via apt-get), and rebuild the image.",
+            "category": "behavioural",
+            "prompt": "Describe a situation where you had to collaborate with DevOps or other teams to improve the deployment pipeline for a Docker-based service. What was your contribution and the outcome?",
+            "answer_outline": "Detail the collaboration process, including communication of technical constraints and requirements. Explain the final improvement (e.g., faster CI/CD, better resource utilization) and how it benefited the team or product.",
             "difficulty": 1
           },
           {
             "id": "q5",
-            "requirement_ids": [
-              "r1"
-            ],
-            "category": "behavioural",
-            "prompt": "Tell me about a time you encountered a complex bug in a Python application that was difficult to reproduce. How did you approach isolating the issue?",
-            "answer_outline": "Describe a systematic debugging process (logging, unit tests, environment isolation). Highlight patience, attention to detail, and the final resolution.",
-            "difficulty": 2
-          },
-          {
-            "id": "q6",
             "requirement_ids": [
               "r1"
             ],
@@ -330,7 +322,7 @@
             "difficulty": 2
           },
           {
-            "id": "q7",
+            "id": "q6",
             "requirement_ids": [
               "r1"
             ],
@@ -343,32 +335,32 @@
         "flashcards": [
           {
             "id": "f1",
-            "front": "What is a Python decorator and how is it used in backend development?",
-            "back": "A decorator is a function that takes another function as an argument and extends its behavior without explicitly modifying it. It is commonly used for logging, authentication, or caching in API endpoints.",
+            "front": "What is a Python virtual environment and why is it essential for backend development?",
+            "back": "A virtual environment isolates project dependencies from the global Python installation, ensuring version consistency and preventing conflicts between different projects.",
             "requirement_ids": [
               "r1"
             ]
           },
           {
             "id": "f2",
-            "front": "Explain the difference between a Python list and a tuple.",
-            "back": "Lists are mutable (can be changed after creation), while tuples are immutable (cannot be changed). Tuples are generally faster and safer for fixed data collections.",
-            "requirement_ids": [
-              "r1"
-            ]
-          },
-          {
-            "id": "f3",
-            "front": "What is the primary purpose of a Dockerfile?",
-            "back": "A Dockerfile is a text document containing instructions for building a Docker image. It defines the base image, dependencies, and commands needed to package an application.",
+            "front": "Explain the difference between a Docker image and a Docker container.",
+            "back": "An image is a static, read-only template containing the application code and dependencies, while a container is a running instance of that image with its own isolated filesystem and processes.",
             "requirement_ids": [
               "r2"
             ]
           },
           {
+            "id": "f3",
+            "front": "How do you optimize a Python application for high concurrency?",
+            "back": "Use asynchronous programming with `asyncio` for I/O-bound tasks or implement multi-processing for CPU-bound tasks to leverage multiple cores and handle concurrent requests efficiently.",
+            "requirement_ids": [
+              "r1"
+            ]
+          },
+          {
             "id": "f4",
-            "front": "What is the difference between a Docker image and a Docker container?",
-            "back": "An image is a static, read-only template containing the application and its dependencies. A container is a runnable instance of that image.",
+            "front": "What is the purpose of a Dockerfile in a backend project?",
+            "back": "A Dockerfile is a text document containing instructions to build a Docker image, specifying the base image, installed dependencies, and application code to ensure reproducible deployments.",
             "requirement_ids": [
               "r2"
             ]
@@ -381,18 +373,17 @@
               "day": 1,
               "focus": "Core Must-Have Requirements & Technical Fundamentals",
               "question_ids": [
-                "q6",
                 "q5",
-                "q4"
+                "q3"
               ],
-              "minutes": 65
+              "minutes": 50
             },
             {
               "day": 2,
               "focus": "Deep-Dive Technical Implementation & Problem Solving",
               "question_ids": [
-                "q2",
-                "q7"
+                "q1",
+                "q6"
               ],
               "minutes": 50
             },
@@ -400,8 +391,8 @@
               "day": 3,
               "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
               "question_ids": [
-                "q3",
-                "q1"
+                "q2",
+                "q4"
               ],
               "minutes": 50
             }
@@ -424,7 +415,7 @@
           "role": "Frontend Engineer",
           "location": "Not Specified",
           "jd_chars": 155,
-          "researched_at": "2026-09-11T20:28:38.470Z",
+          "researched_at": "2026-09-11T21:03:01.454Z",
           "pages_used": [
             "https://this-company-domain-does-not-exist-404-test.xyz"
           ]
@@ -473,8 +464,8 @@
               "r1"
             ],
             "category": "technical",
-            "prompt": "Describe a complex layout you built using Tailwind CSS. How did you handle responsive breakpoints and maintain design consistency across different screen sizes?",
-            "answer_outline": "Mention specific layout challenges (e.g., grid/flexbox) and how Tailwind utilities were applied. Discuss strategy for responsive design (mobile-first) and ensuring visual consistency.",
+            "prompt": "How do you approach complex layout challenges using Tailwind CSS, and how do you manage custom design tokens or extend the default configuration to maintain consistency across a large codebase?",
+            "answer_outline": "Mention using Tailwind's utility-first approach for rapid development while leveraging `@layer` and custom config for reusable patterns. Discuss strategies for managing design tokens (colors, spacing) via Tailwind config or CSS variables to ensure brand consistency.",
             "difficulty": 2
           },
           {
@@ -483,9 +474,9 @@
               "r2"
             ],
             "category": "technical",
-            "prompt": "What specific React performance optimization techniques have you implemented in previous projects? How did you measure the impact of these changes?",
-            "answer_outline": "List techniques like memoization, code splitting, or virtualization. Explain metrics used (e.g., LCP, FID) and tools (React DevTools, Lighthouse) to verify improvements.",
-            "difficulty": 2
+            "prompt": "Describe a specific instance where you identified a performance bottleneck in a React application. What tools did you use to diagnose it, and what specific optimization techniques did you implement to resolve it?",
+            "answer_outline": "Identify tools like React DevTools Profiler or Lighthouse to pinpoint re-renders or long tasks. Detail solutions such as memoization (React.memo, useMemo), code splitting (React.lazy), or virtualization for large lists.",
+            "difficulty": 3
           },
           {
             "id": "q3",
@@ -493,33 +484,22 @@
               "r3"
             ],
             "category": "technical",
-            "prompt": "How do you ensure your React components comply with WCAG 2.1 AA standards? Give an example of an accessibility issue you identified and fixed.",
-            "answer_outline": "Discuss semantic HTML, ARIA roles, and keyboard navigation. Provide a concrete example of an accessibility bug (e.g., missing alt text, focus trap) and the solution.",
+            "prompt": "How do you ensure your React components meet WCAG 2.1 AA standards? Can you walk through how you would implement an accessible modal dialog from scratch?",
+            "answer_outline": "Mention semantic HTML usage, ARIA attributes (role, aria-modal, aria-labelledby), and keyboard navigation (focus trapping, Escape key handling). Discuss testing with screen readers and automated tools like axe-core to verify compliance.",
             "difficulty": 2
           },
           {
             "id": "q4",
             "requirement_ids": [
-              "r1",
               "r2"
             ],
             "category": "behavioural",
-            "prompt": "Tell me about a time you had to balance rapid feature development with maintaining high code quality and performance in a frontend project.",
-            "answer_outline": "Describe the pressure or deadline and the trade-offs considered. Explain how you prioritized tasks and ensured long-term maintainability without blocking delivery.",
+            "prompt": "Tell me about a time when you had to balance a tight deadline with the need for performance optimization. How did you prioritize your tasks, and what was the outcome?",
+            "answer_outline": "Describe the conflict between feature delivery and code quality/performance. Explain the decision-making process (e.g., profiling critical paths first) and the final result, including any trade-offs made.",
             "difficulty": 2
           },
           {
             "id": "q5",
-            "requirement_ids": [
-              "r3"
-            ],
-            "category": "behavioural",
-            "prompt": "Describe a situation where you advocated for accessibility improvements that were initially resisted by stakeholders. How did you handle the conversation?",
-            "answer_outline": "Explain the context and the specific accessibility concern. Detail the communication strategy used to align stakeholders on the importance of inclusive design.",
-            "difficulty": 3
-          },
-          {
-            "id": "q6",
             "requirement_ids": [
               "r1"
             ],
@@ -529,7 +509,7 @@
             "difficulty": 2
           },
           {
-            "id": "q7",
+            "id": "q6",
             "requirement_ids": [
               "r1"
             ],
@@ -542,16 +522,16 @@
         "flashcards": [
           {
             "id": "f1",
-            "front": "How does Tailwind CSS improve developer workflow compared to traditional CSS?",
-            "back": "Tailwind uses a utility-first approach, allowing developers to compose styles directly in markup, which reduces context switching and minimizes the need for custom CSS files.",
+            "front": "How does Tailwind CSS improve development speed compared to traditional CSS?",
+            "back": "Tailwind provides a utility-first approach with pre-defined classes, eliminating the need to write custom CSS and reducing context switching between HTML and style files.",
             "requirement_ids": [
               "r1"
             ]
           },
           {
             "id": "f2",
-            "front": "What is the primary benefit of using `React.memo` in a component hierarchy?",
-            "back": "It prevents unnecessary re-renders of a component if its props have not changed, thereby improving performance by reducing the number of times React executes the render function.",
+            "front": "What is the primary benefit of using React.memo?",
+            "back": "React.memo prevents unnecessary re-renders of function components by shallow-comparing props, improving performance in large component trees.",
             "requirement_ids": [
               "r2"
             ]
@@ -559,25 +539,25 @@
           {
             "id": "f3",
             "front": "Why is semantic HTML important for accessibility?",
-            "back": "Semantic HTML provides structural meaning to content, allowing screen readers and other assistive technologies to correctly interpret and navigate the page.",
+            "back": "Semantic HTML provides meaningful structure that screen readers and assistive technologies can interpret, ensuring content is navigable and understandable to all users.",
             "requirement_ids": [
               "r3"
             ]
           },
           {
             "id": "f4",
-            "front": "What is the minimum color contrast ratio required for normal text under WCAG AA?",
-            "back": "The minimum contrast ratio for normal text is 4.5:1, ensuring readability for users with visual impairments.",
+            "front": "How does code splitting optimize React applications?",
+            "back": "Code splitting breaks the bundle into smaller chunks loaded on demand, reducing initial load time and improving perceived performance.",
             "requirement_ids": [
-              "r3"
+              "r2"
             ]
           },
           {
             "id": "f5",
-            "front": "How can you optimize React list rendering for large datasets?",
-            "back": "Use virtualization techniques (like react-window) to render only the visible items in the DOM, significantly reducing memory usage and improving scroll performance.",
+            "front": "What is a key WCAG requirement for color contrast?",
+            "back": "WCAG requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text to ensure readability for users with visual impairments.",
             "requirement_ids": [
-              "r2"
+              "r3"
             ]
           }
         ],
@@ -588,8 +568,8 @@
               "day": 1,
               "focus": "Core Must-Have Requirements & Technical Fundamentals",
               "question_ids": [
-                "q5",
-                "q3"
+                "q2",
+                "q4"
               ],
               "minutes": 50
             },
@@ -597,8 +577,8 @@
               "day": 2,
               "focus": "System Architecture, Scalability & Design Trade-offs",
               "question_ids": [
-                "q6",
-                "q4"
+                "q5",
+                "q6"
               ],
               "minutes": 50
             },
@@ -606,16 +586,15 @@
               "day": 3,
               "focus": "Deep-Dive Technical Implementation & Problem Solving",
               "question_ids": [
-                "q1",
-                "q7"
+                "q1"
               ],
-              "minutes": 50
+              "minutes": 35
             },
             {
               "day": 4,
               "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
               "question_ids": [
-                "q2"
+                "q3"
               ],
               "minutes": 35
             }
@@ -638,7 +617,7 @@
           "role": "DevOps Engineer",
           "location": "Not Specified",
           "jd_chars": 145,
-          "researched_at": "2026-09-11T20:31:39.566Z",
+          "researched_at": "2026-09-11T21:06:18.334Z",
           "pages_used": [
             "https://about.gitlab.com/",
             "https://about.gitlab.com/assessments/devops-modernization-assessment/",
@@ -647,8 +626,8 @@
           ]
         },
         "company_brief": {
-          "summary": "GitLab provides a single application for the entire DevSecOps lifecycle, currently emphasizing its GitLab Duo Agent Platform for AI-powered software engineering. Candidates should understand how the platform integrates security, CI/CD, and AI agents to automate workflows and improve developer productivity.",
-          "what_they_do": "GitLab offers a unified platform for software development, security, and operations, featuring AI-driven agents that automate tasks like code review and vulnerability remediation within a customizable workflow.",
+          "summary": "Information retrieved from https://about.gitlab.com. Review provided research sources for internal details.",
+          "what_they_do": "Operates online at https://about.gitlab.com.",
           "sources": [
             "https://about.gitlab.com/",
             "https://about.gitlab.com/assessments/devops-modernization-assessment/",
@@ -660,7 +639,7 @@
           "title": "DevOps Engineer",
           "seniority": "Mid",
           "responsibilities": [
-            "Implement and maintain CI/CD automation using GitHub Actions",
+            "Implement and maintain CI/CD automation pipelines using GitHub Actions",
             "Manage and administer Linux systems",
             "Perform infrastructure security hardening"
           ],
@@ -692,8 +671,8 @@
               "r1"
             ],
             "category": "technical",
-            "prompt": "In the context of GitLab's single-application model, how would you design a CI/CD pipeline using GitHub Actions to securely manage secrets and ensure reproducible builds for a multi-stage deployment?",
-            "answer_outline": "Describe using OIDC for short-lived credentials instead of static tokens. Explain strategies for caching dependencies and pinning action versions for reproducibility.",
+            "prompt": "Describe a complex CI/CD pipeline you built using GitHub Actions. How did you handle caching, parallelization, and secret management to optimize build times and security?",
+            "answer_outline": "Mention specific strategies like matrix builds, artifact caching, and OIDC for cloud provider authentication. Explain how they measured performance improvements and handled failure recovery.",
             "difficulty": 2
           },
           {
@@ -702,8 +681,8 @@
               "r2"
             ],
             "category": "technical",
-            "prompt": "You are managing a fleet of Linux servers running GitLab runners. How do you approach system administration to ensure high availability and efficient resource utilization during peak CI/CD loads?",
-            "answer_outline": "Discuss monitoring tools (e.g., Prometheus/Grafana) and alerting thresholds for CPU/memory. Explain resource limits (cgroups) and auto-scaling strategies for runner instances.",
+            "prompt": "Walk me through your process for troubleshooting a Linux server experiencing high CPU usage and memory leaks. What tools do you use, and how do you isolate the root cause?",
+            "answer_outline": "List tools like top, htop, ps, strace, and perf. Describe the step-by-step diagnostic approach from identifying the process to analyzing system logs and kernel parameters.",
             "difficulty": 2
           },
           {
@@ -712,8 +691,8 @@
               "r3"
             ],
             "category": "technical",
-            "prompt": "How do you implement infrastructure security hardening for a CI/CD environment to prevent supply chain attacks and ensure compliance with security policies?",
-            "answer_outline": "Mention container image scanning and vulnerability management in the pipeline. Describe network segmentation and least-privilege access controls for build agents.",
+            "prompt": "How do you approach infrastructure security hardening for a new Linux-based deployment? Provide examples of specific configurations or tools you implement.",
+            "answer_outline": "Mention CIS benchmarks, firewall rules (iptables/nftables), and user privilege management. Discuss automated compliance checking tools like OpenSCAP or Ansible roles for hardening.",
             "difficulty": 3
           },
           {
@@ -722,8 +701,8 @@
               "r1"
             ],
             "category": "behavioural",
-            "prompt": "Tell me about a time when a critical CI/CD pipeline failure disrupted a release. How did you troubleshoot the issue and communicate with the team to resolve it?",
-            "answer_outline": "Describe the root cause analysis process and immediate mitigation steps. Highlight clear communication with stakeholders and post-incident review actions.",
+            "prompt": "Tell me about a time when a critical CI/CD pipeline failure blocked a major release. How did you communicate with the team, and what steps did you take to resolve the issue and prevent recurrence?",
+            "answer_outline": "Describe the immediate communication strategy and escalation process. Explain the root cause analysis and the specific changes made to the pipeline or documentation to prevent future occurrences.",
             "difficulty": 2
           },
           {
@@ -732,8 +711,8 @@
               "r2"
             ],
             "category": "behavioural",
-            "prompt": "Describe a situation where you had to balance system performance with security requirements on a Linux infrastructure. How did you make the decision?",
-            "answer_outline": "Explain the trade-offs considered (e.g., encryption overhead vs. data protection). Detail the outcome and any adjustments made to optimize both aspects.",
+            "prompt": "Describe a situation where you had to make a difficult decision regarding Linux system administration that impacted other teams. How did you balance operational needs with business requirements?",
+            "answer_outline": "Provide a specific example of a trade-off, such as performance vs. stability or security vs. convenience. Explain how you gathered input from stakeholders and the rationale behind your final decision.",
             "difficulty": 2
           },
           {
@@ -760,32 +739,32 @@
         "flashcards": [
           {
             "id": "f1",
-            "front": "What is the primary benefit of using GitHub Actions for CI/CD?",
-            "back": "It provides a unified platform to automate build, test, and deployment pipelines directly within the repository, reducing context switching and integrating seamlessly with code events.",
+            "front": "How do you structure a GitHub Actions workflow for a multi-stage CI/CD pipeline?",
+            "back": "Define distinct jobs for build, test, and deploy with explicit `needs` dependencies to ensure sequential execution. Use `secrets` for credentials and `artifacts` to pass build outputs between stages.",
             "requirement_ids": [
               "r1"
             ]
           },
           {
             "id": "f2",
-            "front": "How do you ensure a GitHub Actions workflow only runs on specific branches?",
-            "back": "Use the `on.push.branches` or `on.pull_request.branches` filters in the workflow YAML to restrict execution to designated paths like `main` or `develop`.",
+            "front": "What is the primary benefit of using `matrix` strategy in GitHub Actions?",
+            "back": "It allows a single job to run multiple parallel instances with different variable combinations (e.g., OS versions or Node.js versions), improving test coverage and reducing redundant workflow code.",
             "requirement_ids": [
               "r1"
             ]
           },
           {
             "id": "f3",
-            "front": "What is the first step in troubleshooting a failing Linux service?",
-            "back": "Check the service status and logs using `systemctl status <service>` and `journalctl -u <service>` to identify immediate errors or dependency issues.",
+            "front": "Which Linux command is used to audit open network ports and their associated processes?",
+            "back": "Use `ss -tulpn` or `lsof -i -P -n` to list listening sockets, protocols, and the PID/program name, which is essential for identifying unauthorized services.",
             "requirement_ids": [
               "r2"
             ]
           },
           {
             "id": "f4",
-            "front": "How do you manage file permissions securely in Linux?",
-            "back": "Apply the principle of least privilege by using `chmod` to restrict read/write/execute access and `chown` to ensure correct ownership, avoiding world-writable files.",
+            "front": "What is the purpose of `systemd` in modern Linux administration?",
+            "back": "It is the init system and service manager that handles process supervision, dependency ordering, and resource control, replacing older systems like SysVinit for more robust service management.",
             "requirement_ids": [
               "r2"
             ]
@@ -827,13 +806,13 @@
           "role": "Software Engineer",
           "location": "Not Specified",
           "jd_chars": 109,
-          "researched_at": "2026-09-11T20:34:40.552Z",
+          "researched_at": "2026-09-11T21:09:19.358Z",
           "pages_used": [
             "http://localhost:8099/mock-company"
           ]
         },
         "company_brief": {
-          "summary": "Company overview was not discoverable from the provided website. No specific details regarding the company's operations or products could be extracted.",
+          "summary": "Company overview was not discoverable from the provided website. No specific product details or interview insights are available for this local development URL.",
           "what_they_do": "Company overview was not discoverable from the provided website.",
           "sources": [
             "http://localhost:8099/mock-company"
@@ -868,8 +847,8 @@
               "r1"
             ],
             "category": "technical",
-            "prompt": "Describe a complex REST API endpoint you built using Express. How did you handle middleware, error handling, and input validation to ensure robustness?",
-            "answer_outline": "Details specific middleware usage (e.g., auth, logging) and custom error-handling patterns. Explains validation strategy (e.g., Joi/Zod) and how errors are standardized for clients.",
+            "prompt": "Describe a complex REST API endpoint you built using Express. How did you handle middleware, error handling, and input validation?",
+            "answer_outline": "Mention specific middleware usage (e.g., auth, logging) and custom error handling strategies. Explain validation approach (e.g., Joi, Zod) and how invalid inputs were handled gracefully.",
             "difficulty": 2
           },
           {
@@ -878,19 +857,18 @@
               "r2"
             ],
             "category": "technical",
-            "prompt": "When writing automated tests for an Express API with Jest or Vitest, how do you mock external dependencies like databases or third-party services? Provide an example of a test case you wrote.",
-            "answer_outline": "Demonstrates use of mocks/spies for DB/HTTP clients to isolate unit tests. Shows a concrete test example covering success and failure paths.",
+            "prompt": "How do you structure your automated tests for a Node.js application using Jest or Vitest? What is your strategy for mocking dependencies?",
+            "answer_outline": "Describe test hierarchy (unit, integration) and file organization. Explain mocking techniques for external services or database calls to ensure test isolation.",
             "difficulty": 2
           },
           {
             "id": "q3",
             "requirement_ids": [
-              "r1",
-              "r2"
+              "r1"
             ],
             "category": "behavioural",
-            "prompt": "Tell me about a time when a bug in your API code was discovered during testing or in production. How did you diagnose the issue, and what changes did you make to your testing or coding practices to prevent recurrence?",
-            "answer_outline": "Describes a specific incident with clear root cause analysis. Highlights concrete improvements to test coverage or code review processes.",
+            "prompt": "Tell me about a time when a bug in your Express API caused a production issue. How did you diagnose it and what changes did you make to prevent recurrence?",
+            "answer_outline": "Detail the diagnostic process (logging, monitoring) and root cause analysis. Highlight preventive measures like adding specific tests or improving error handling.",
             "difficulty": 2
           },
           {
@@ -899,9 +877,9 @@
               "r2"
             ],
             "category": "behavioural",
-            "prompt": "Describe a situation where you had to advocate for better test coverage or code quality against a deadline. How did you communicate the trade-offs to your team or manager?",
-            "answer_outline": "Shows ability to balance speed with quality using data or risk assessment. Demonstrates clear communication and collaboration to reach a consensus.",
-            "difficulty": 3
+            "prompt": "Describe a situation where you had to convince a team member to adopt a new testing practice or tool. How did you approach the conversation?",
+            "answer_outline": "Explain the rationale for the change and how you communicated its benefits. Describe the outcome and how you supported the team during the transition.",
+            "difficulty": 1
           },
           {
             "id": "q5",
@@ -909,8 +887,8 @@
               "r1"
             ],
             "category": "system-design",
-            "prompt": "Design a scalable REST API for a high-traffic e-commerce product catalog. How would you structure your Express routes, handle caching, and ensure the system remains performant under load?",
-            "answer_outline": "Proposes layered architecture (Controller/Service/Repository) and caching strategy (e.g., Redis). Addresses horizontal scaling, rate limiting, and database optimization.",
+            "prompt": "Design a scalable REST API service using Express that handles high-concurrency requests. How would you manage state and ensure reliability?",
+            "answer_outline": "Discuss horizontal scaling strategies, load balancing, and stateless design. Mention database connection pooling, caching layers, and retry mechanisms.",
             "difficulty": 3
           },
           {
@@ -927,8 +905,8 @@
         "flashcards": [
           {
             "id": "f1",
-            "front": "What is the primary purpose of middleware in Express?",
-            "back": "Middleware functions execute during the request-response cycle, allowing developers to process requests, modify responses, or terminate the cycle before the final route handler is reached.",
+            "front": "What is the primary purpose of middleware in an Express.js application?",
+            "back": "Middleware functions execute during the request-response cycle, allowing you to process requests, modify the response, or terminate the cycle before the final route handler is reached.",
             "requirement_ids": [
               "r1"
             ]
@@ -936,15 +914,15 @@
           {
             "id": "f2",
             "front": "How do you handle asynchronous errors in Express route handlers?",
-            "back": "Wrap asynchronous logic in try/catch blocks and pass the error to the next middleware using next(err), or use a dedicated error-handling middleware to centralize error responses.",
+            "back": "Wrap the handler in a try-catch block or use a utility function to catch errors and pass them to the next middleware via `next(error)`, ensuring they are handled by a centralized error-handling middleware.",
             "requirement_ids": [
               "r1"
             ]
           },
           {
             "id": "f3",
-            "front": "What is the difference between Jest's `describe` and `it` blocks?",
-            "back": "`describe` groups related tests logically for organization, while `it` (or `test`) defines a specific test case that asserts a single behavior or condition.",
+            "front": "What is the difference between `describe` and `it` blocks in Jest?",
+            "back": "`describe` groups related tests logically, while `it` (or `test`) defines a specific test case that asserts a particular behavior or condition.",
             "requirement_ids": [
               "r2"
             ]
@@ -952,15 +930,7 @@
           {
             "id": "f4",
             "front": "How do you mock a module in Jest?",
-            "back": "Use `jest.mock()` to replace a module with a mock implementation, allowing tests to isolate dependencies and control their behavior without executing the original code.",
-            "requirement_ids": [
-              "r2"
-            ]
-          },
-          {
-            "id": "f5",
-            "front": "What is the benefit of using Vitest over Jest for modern projects?",
-            "back": "Vitest offers faster execution times and native ESM support, making it more suitable for modern JavaScript/TypeScript projects that rely on ES modules.",
+            "back": "Use `jest.mock('module-name')` to automatically mock a module, or `jest.spyOn` to mock specific methods, allowing you to control dependencies and isolate the unit under test.",
             "requirement_ids": [
               "r2"
             ]
@@ -979,14 +949,6 @@
             },
             {
               "day": 2,
-              "focus": "Leadership, Collaboration & Scenario-Based Questions",
-              "question_ids": [
-                "q4"
-              ],
-              "minutes": 35
-            },
-            {
-              "day": 3,
               "focus": "Deep-Dive Technical Implementation & Problem Solving",
               "question_ids": [
                 "q1"
@@ -994,7 +956,7 @@
               "minutes": 35
             },
             {
-              "day": 4,
+              "day": 3,
               "focus": "Deep-Dive Technical Implementation & Problem Solving",
               "question_ids": [
                 "q2"
@@ -1002,7 +964,7 @@
               "minutes": 35
             },
             {
-              "day": 5,
+              "day": 4,
               "focus": "Leadership, Collaboration & Scenario-Based Questions",
               "question_ids": [
                 "q3"
@@ -1010,10 +972,18 @@
               "minutes": 35
             },
             {
-              "day": 6,
+              "day": 5,
               "focus": "Leadership, Collaboration & Scenario-Based Questions",
               "question_ids": [
                 "q6"
+              ],
+              "minutes": 35
+            },
+            {
+              "day": 6,
+              "focus": "Leadership, Collaboration & Scenario-Based Questions",
+              "question_ids": [
+                "q4"
               ],
               "minutes": 35
             },

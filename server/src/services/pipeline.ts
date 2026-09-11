@@ -19,7 +19,7 @@ import {
 import { crawlCompanyWebsite } from './crawler';
 import { searchPublicInterviewDiscussion } from './discussion';
 import { checkCoverage } from '../domain/coverage';
-import { allocateSchedule } from '../domain/scheduler';
+import { allocateSchedule } from '../domain/study-planner';
 
 export interface PipelineOptions {
   jd: string;
