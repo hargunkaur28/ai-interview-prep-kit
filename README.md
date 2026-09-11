@@ -215,11 +215,12 @@ npm run evaluate -- --input <cases.json> --output <kits.json>
    ```
    Add your Groq API key:
    ```env
-   GROQ_API_KEY=gsk_your_groq_api_key_here
-   GROQ_MODEL=llama-3.3-70b-versatile
-   MONGODB_URI=mongodb://localhost:27017/trao_interview_prep
-   JWT_SECRET=your-secret-key
-   ALLOW_LOCAL_URLS=true
+    GROQ_API_KEY=gsk_your_groq_api_key_here
+    GROQ_MODEL=qwen/qwen3.8-27b
+    GROQ_FALLBACK_MODEL=groq/compound
+    MONGODB_URI=mongodb://localhost:27017/trao_interview_prep
+    JWT_SECRET=your-secret-key
+    ALLOW_LOCAL_URLS=true
    ```
    *(Note: If `GROQ_API_KEY` is omitted, the application runs with an intelligent rule-based fallback generator for offline evaluation and testing without crashing).*
 
@@ -245,23 +246,26 @@ npm run evaluate -- --input <cases.json> --output <kits.json>
 
 ## 8. Automated Test Coverage
 
-The test suite covers the critical invariants evaluated by Trao:
-- `scheduler.test.ts`:
+The test suite covers the critical invariants evaluated by Trao across 4 test suites (26 tests, 100% pass):
+- `domain.test.ts`:
   - Exactly $N$ days returned for 1-day, 5-day, and 60-day inputs.
   - All durations are positive integer minutes.
   - Higher-difficulty / must-have requirements scheduled earlier.
   - All scheduled question IDs exist.
-- `coverage.test.ts`:
-  - Accurately detects uncovered must-have requirements.
-  - Verifies Pass 2 gap-closing logic.
+  - Accurately detects uncovered must-have requirements and validates Appendix A schema conformance.
+- `groq-token-budget.test.ts`:
+  - Enforces 850-token safe rolling-window budget and 900-token individual ceiling.
+  - Validates conservative reservation retention without premature release.
+  - Verifies honest non-discoverable company briefs without fabrication.
 - `regeneration.test.ts`:
   - Proves that user-added, edited, and pinned questions survive category regeneration while unedited items are replaced.
-- `validator.test.ts`:
-  - Validates exact Appendix A schema conformance.
-  - Rejects invalid categories, floats in minutes, and dangling references.
+- `e2e-journey.test.ts`:
+  - End-to-end integration across registration, authentication, kit generation, inline editing, and export.
 
 ---
 
-## 9. Known Limitations & Design Trade-offs
-- **Public Discussion Search**: Uses lightweight public search without requiring paid third-party search APIs (SerpAPI, Google Custom Search). When public discussions are unavailable, it records an honest warning rather than hallucinating.
-- **Groq Free-Tier Rate Limits**: Free-tier rate limits enforce strict token caps. The pipeline groups category questions into lean prompts and applies exponential backoff with jitter to guarantee completion within rate limits.
+## 9. Deployment Assumptions & Design Trade-offs
+
+- **Single Server Instance Deployment Assumption**: The token scheduler (`GroqTokenScheduler`) operates in Node.js process memory to coordinate requests within the organization's 1,000 OTPM ceiling (850-token safe rolling-window budget). In a horizontally scaled multi-instance deployment (e.g., behind a load balancer with multiple containers), token reservations should be synchronized via a centralized datastore (such as Redis sliding-window rate-limiting) to ensure aggregate requests across all workers do not exceed the 1,000 OTPM ceiling.
+- **Combined Category Generation**: Category questions are generated in a single combined request capped at 700 tokens rather than four concurrent 400-token calls, eliminating concurrency burst races and adhering safely to the rolling budget.
+- **Public Discussion Search**: Uses lightweight public search without requiring paid third-party search APIs. When discussions are unavailable, it records an honest status rather than fabricating claims.

@@ -314,9 +314,9 @@ export default function NewKitPage() {
                           })}
                         </div>
 
-                        <div className="flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400 pt-0.5 border-t border-violet-100 dark:border-violet-900/40">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[10px] text-slate-500 dark:text-slate-400 pt-0.5 border-t border-violet-100 dark:border-violet-900/40 gap-0.5">
                           <span>Combined single API request (capped at 700 tokens)</span>
-                          <span className="font-mono">Paced for 1,000 OTPM</span>
+                          <span className="font-mono text-violet-600 dark:text-violet-400">Paced for 850-token safe budget (1,000 OTPM ceiling)</span>
                         </div>
                       </div>
                     )}
