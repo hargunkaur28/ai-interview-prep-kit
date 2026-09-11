@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Trao Prep — AI Interview Prep Kit',
+  title: 'AI Interview Prep Kit',
   description: 'Turn any job description and company URL into a structured, editable interview preparation kit.',
 };
 

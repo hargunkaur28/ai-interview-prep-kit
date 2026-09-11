@@ -606,7 +606,8 @@ Start question ID from: q${startIdIndex}`;
 export async function generateFlashcards(
   requirements: Requirement[],
   role: RoleInfo,
-  companyBrief: CompanyBrief
+  companyBrief: CompanyBrief,
+  startIdIndex: number = 1
 ): Promise<Flashcard[]> {
   const systemPrompt = `You are an interview preparation coach.
 Generate 5 crisp flashcards for quick revision.
@@ -624,7 +625,8 @@ Return JSON:
 RULES: Crisp, high-yield definitions. Reference valid requirement IDs.`;
 
   const userPrompt = `Role: ${role.title} (${role.seniority})
-Requirements: ${JSON.stringify(requirements.map(r => ({ id: r.id, text: r.text })), null, 2)}`;
+Requirements: ${JSON.stringify(requirements.map(r => ({ id: r.id, text: r.text })), null, 2)}
+Start flashcard ID sequence from: f${startIdIndex}`;
 
   const raw = await callGroqWithScheduler({
     stage: 'generating_flashcards',
@@ -640,7 +642,7 @@ Requirements: ${JSON.stringify(requirements.map(r => ({ id: r.id, text: r.text }
   const fallbackReqId = requirements[0]?.id || 'r1';
 
   const cards = (parsed.flashcards || []).map((f, idx) => ({
-    id: `f${idx + 1}`,
+    id: `f${startIdIndex + idx}`,
     front: f.front || 'Core concept',
     back: f.back || 'Definition and application.',
     requirement_ids: Array.isArray(f.requirement_ids) && f.requirement_ids.length > 0
@@ -649,8 +651,8 @@ Requirements: ${JSON.stringify(requirements.map(r => ({ id: r.id, text: r.text }
   }));
 
   return cards.length > 0 ? cards : [
-    { id: 'f1', front: `Core responsibilities of ${role.title}`, back: 'Key systems architecture and best practices.', requirement_ids: [fallbackReqId] },
-    { id: 'f2', front: 'Handling production incidents and debugging', back: 'Root cause analysis, monitoring, and runbooks.', requirement_ids: [fallbackReqId] },
+    { id: `f${startIdIndex}`, front: `Core responsibilities of ${role.title}`, back: 'Key systems architecture and best practices.', requirement_ids: [fallbackReqId] },
+    { id: `f${startIdIndex + 1}`, front: 'Handling production incidents and debugging', back: 'Root cause analysis, monitoring, and runbooks.', requirement_ids: [fallbackReqId] },
   ];
 }
 

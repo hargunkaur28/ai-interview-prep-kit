@@ -2,7 +2,12 @@ import { Router, Response } from 'express';
 import { requireAuth, AuthenticatedRequest } from './auth';
 import { Kit } from '../models/Kit';
 import { runPipeline } from '../services/pipeline';
-import { generateQuestionsForCategory, generateCompanyBrief } from '../services/groq';
+import {
+  generateQuestionsForCategory,
+  generateCompanyBrief,
+  generateAllCategorizedQuestions,
+  generateFlashcards,
+} from '../services/groq';
 import { checkCoverage } from '../domain/coverage';
 import { allocateSchedule } from '../domain/study-planner';
 import {
@@ -15,6 +20,29 @@ import {
 } from '@trao/shared';
 
 export const kitsRouter = Router();
+
+// Track in-flight operations per kit to prevent duplicate/concurrent generation requests
+export const inFlightKitOperations = new Set<string>();
+
+/**
+ * Safely determines the next sequential numeric ID, ignoring malformed or non-sequential IDs.
+ * Example: for prefix 'q', IDs ['q1', 'q5', 'bad', 'q2'] -> max numeric ID is 5 -> next is 6.
+ */
+export function getNextNumericId(items: { id?: string }[], prefix: string): number {
+  let max = 0;
+  const regex = new RegExp(`^${prefix}(\\d+)$`, 'i');
+  for (const item of items) {
+    if (!item?.id || typeof item.id !== 'string') continue;
+    const match = item.id.match(regex);
+    if (match && match[1]) {
+      const num = parseInt(match[1], 10);
+      if (!isNaN(num) && num > max) {
+        max = num;
+      }
+    }
+  }
+  return max + 1;
+}
 
 // Apply auth to all kit routes
 kitsRouter.use(requireAuth);
@@ -237,6 +265,102 @@ kitsRouter.post('/:id/regenerate-brief', async (req: AuthenticatedRequest, res: 
     res.json({ kit });
   } catch (err: any) {
     res.status(500).json({ error: 'Failed to regenerate company brief' });
+  }
+});
+
+// Generate More Questions (Appends fresh questions across 4 categories without replacing existing)
+kitsRouter.post('/:id/generate-more-questions', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const kit = await Kit.findOne({ _id: req.params.id, userId: req.userId });
+  if (!kit) {
+    res.status(404).json({ error: 'Kit not found' });
+    return;
+  }
+
+  const lockKey = `${kit._id.toString()}:more_questions`;
+  if (inFlightKitOperations.has(lockKey)) {
+    res.status(409).json({ error: 'Question generation is already in progress for this kit' });
+    return;
+  }
+
+  inFlightKitOperations.add(lockKey);
+  try {
+    const nextQNum = getNextNumericId(kit.questions, 'q');
+    const freshQuestions = await generateAllCategorizedQuestions(
+      kit.role.requirements,
+      kit.role,
+      kit.company_brief,
+      nextQNum
+    );
+
+    const mappedNew: InternalQuestion[] = freshQuestions.map(q => ({
+      ...q,
+      origin: 'generated' as const,
+      is_edited: false,
+      is_pinned: false,
+    }));
+
+    // Append to existing questions - guarantees no existing questions are overwritten
+    kit.questions = [...kit.questions, ...mappedNew];
+
+    // Recalculate deterministic coverage & schedule
+    const coverageAnalysis = checkCoverage(kit.role.requirements, kit.questions);
+    kit.coverage.uncovered_requirement_ids = coverageAnalysis.uncoveredRequirementIds;
+
+    kit.schedule = allocateSchedule(kit.schedule.days_available, kit.questions, kit.role.requirements);
+
+    await kit.save();
+    res.json({ kit, addedCount: mappedNew.length });
+  } catch (err: any) {
+    console.error('[Kits] Generate more questions error:', err);
+    res.status(500).json({ error: err.message || 'Failed to generate additional questions' });
+  } finally {
+    inFlightKitOperations.delete(lockKey);
+  }
+});
+
+// Generate More Flashcards (Appends fresh flashcards without replacing existing)
+kitsRouter.post('/:id/generate-more-flashcards', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const kit = await Kit.findOne({ _id: req.params.id, userId: req.userId });
+  if (!kit) {
+    res.status(404).json({ error: 'Kit not found' });
+    return;
+  }
+
+  const lockKey = `${kit._id.toString()}:more_flashcards`;
+  if (inFlightKitOperations.has(lockKey)) {
+    res.status(409).json({ error: 'Flashcard generation is already in progress for this kit' });
+    return;
+  }
+
+  inFlightKitOperations.add(lockKey);
+  try {
+    const nextFNum = getNextNumericId(kit.flashcards, 'f');
+    const freshCards = await generateFlashcards(
+      kit.role.requirements,
+      kit.role,
+      kit.company_brief,
+      nextFNum
+    );
+
+    const mappedNew: InternalFlashcard[] = freshCards.map(f => ({
+      ...f,
+      origin: 'generated' as const,
+      is_edited: false,
+      is_pinned: false,
+      confidence: undefined,
+      practice_count: 0,
+    }));
+
+    // Append to existing flashcards - guarantees no existing flashcards or scores are overwritten
+    kit.flashcards = [...kit.flashcards, ...mappedNew];
+
+    await kit.save();
+    res.json({ kit, addedCount: mappedNew.length });
+  } catch (err: any) {
+    console.error('[Kits] Generate more flashcards error:', err);
+    res.status(500).json({ error: err.message || 'Failed to generate additional flashcards' });
+  } finally {
+    inFlightKitOperations.delete(lockKey);
   }
 });
 

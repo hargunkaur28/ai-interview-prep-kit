@@ -79,6 +79,10 @@ export default function KitWorkspacePage() {
   const [newFront, setNewFront] = useState('');
   const [newBack, setNewBack] = useState('');
 
+  // Additional generation states
+  const [isGeneratingMoreQuestions, setIsGeneratingMoreQuestions] = useState(false);
+  const [isGeneratingMoreFlashcards, setIsGeneratingMoreFlashcards] = useState(false);
+
   // Fetch Kit
   useEffect(() => {
     fetchApi<{ kit: InternalKit }>(`/kits/${kitId}`)
@@ -399,9 +403,46 @@ export default function KitWorkspacePage() {
     }
   };
 
+  // Generate More Questions (Appends fresh questions across all 4 categories)
+  const handleGenerateMoreQuestions = async () => {
+    if (!kit || isGeneratingMoreQuestions) return;
+    setIsGeneratingMoreQuestions(true);
+    try {
+      const res = await fetchApi<{ kit: InternalKit; addedCount: number }>(
+        `/kits/${kitId}/generate-more-questions`,
+        { method: 'POST' }
+      );
+      // Safeguard 4: Replace local kit state directly with returned kit (no duplicate client append)
+      setKit(res.kit);
+    } catch (err: any) {
+      alert(err.message || 'Failed to generate additional questions');
+    } finally {
+      setIsGeneratingMoreQuestions(false);
+    }
+  };
+
+  // Generate More Flashcards (Appends fresh flashcards)
+  const handleGenerateMoreFlashcards = async () => {
+    if (!kit || isGeneratingMoreFlashcards) return;
+    setIsGeneratingMoreFlashcards(true);
+    try {
+      const res = await fetchApi<{ kit: InternalKit; addedCount: number }>(
+        `/kits/${kitId}/generate-more-flashcards`,
+        { method: 'POST' }
+      );
+      // Safeguard 4: Replace local kit state directly with returned kit
+      setKit(res.kit);
+      setPracticeIndex(prev => Math.min(prev, Math.max(0, res.kit.flashcards.length - 1)));
+    } catch (err: any) {
+      alert(err.message || 'Failed to generate additional flashcards');
+    } finally {
+      setIsGeneratingMoreFlashcards(false);
+    }
+  };
+
   // Practice Mode scoring
   const handleScoreCard = async (score: 1 | 2 | 3) => {
-    if (!kit || !kit.flashcards[practiceIndex]) return;
+    if (!kit || !kit.flashcards || !kit.flashcards[practiceIndex]) return;
     const card = kit.flashcards[practiceIndex];
 
     try {
@@ -428,14 +469,15 @@ export default function KitWorkspacePage() {
     }
   };
 
+  // Circular Flashcard Navigation (Loops continuously between first and last)
   const nextCard = () => {
-    if (!kit) return;
+    if (!kit || !kit.flashcards || kit.flashcards.length === 0) return;
     setIsAnswerRevealed(false);
     setPracticeIndex(prev => (prev + 1) % kit.flashcards.length);
   };
 
   const prevCard = () => {
-    if (!kit) return;
+    if (!kit || !kit.flashcards || kit.flashcards.length === 0) return;
     setIsAnswerRevealed(false);
     setPracticeIndex(prev => (prev - 1 + kit.flashcards.length) % kit.flashcards.length);
   };
@@ -911,8 +953,27 @@ export default function KitWorkspacePage() {
                 ))}
               </div>
 
-              {/* Actions: Add Question & Regenerate */}
-              <div className="flex items-center space-x-2">
+              {/* Actions: Add Question & Regenerate & Generate More */}
+              <div className="flex items-center space-x-2 flex-wrap gap-y-2">
+                <button
+                  onClick={handleGenerateMoreQuestions}
+                  disabled={isGeneratingMoreQuestions}
+                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-semibold shadow-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  title="Generate additional questions across all 4 categories"
+                >
+                  {isGeneratingMoreQuestions ? (
+                    <>
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                      <span>Generating Questions...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Generate More Questions</span>
+                    </>
+                  )}
+                </button>
+
                 <button
                   onClick={() => setShowAddQuestion(!showAddQuestion)}
                   className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-[#262838] bg-white dark:bg-[#12141F] hover:bg-slate-50 dark:hover:bg-[#1C1E2B] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-xs font-medium transition-colors"
@@ -1225,7 +1286,26 @@ export default function KitWorkspacePage() {
                 </p>
               </div>
 
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 flex-wrap gap-y-2">
+                <button
+                  onClick={handleGenerateMoreFlashcards}
+                  disabled={isGeneratingMoreFlashcards}
+                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-semibold shadow-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  title="Generate additional flashcards"
+                >
+                  {isGeneratingMoreFlashcards ? (
+                    <>
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                      <span>Generating Flashcards...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Generate More Flashcards</span>
+                    </>
+                  )}
+                </button>
+
                 <button
                   onClick={handleSortWeakFirst}
                   className="px-3 py-1.5 border border-slate-300 dark:border-[#262838] bg-white dark:bg-[#12141F] hover:bg-slate-50 dark:hover:bg-[#1C1E2B] text-violet-600 dark:text-violet-400 rounded-xl text-xs font-medium transition-colors"
