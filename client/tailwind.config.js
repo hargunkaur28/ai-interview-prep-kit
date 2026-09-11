@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'Georgia', '"Times New Roman"', 'serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         background: 'hsl(var(--background))',
