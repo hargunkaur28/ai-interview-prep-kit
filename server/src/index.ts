@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: (origin, callback) => {
+    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
       // Allow requests with no origin (like mobile apps, curl, evaluate CLI)
       if (!origin) return callback(null, true);
       return callback(null, true);
@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.json({ limit: '2mb' }));
 
 // Health Check
-app.get('/health', (_req, res) => {
+app.get('/health', (_req: express.Request, res: express.Response) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
 });
 
