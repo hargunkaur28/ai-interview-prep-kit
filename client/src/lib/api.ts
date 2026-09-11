@@ -19,6 +19,14 @@ export async function fetchApi<T>(path: string, options: RequestInit = {}): Prom
     headers.set('Content-Type', 'application/json');
   }
 
+  // Dual-layer auth: attach Bearer token if available in localStorage (cross-origin fallback)
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('trao_token');
+    if (token && !headers.has('Authorization')) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+  }
+
   const res = await fetch(url, {
     ...options,
     headers,

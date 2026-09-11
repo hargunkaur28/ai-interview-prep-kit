@@ -30,10 +30,13 @@ export default function LandingPage() {
 
     try {
       const endpoint = isLogin ? '/auth/login' : '/auth/register';
-      await fetchApi(endpoint, {
+      const res = await fetchApi<{ user: any; token?: string }>(endpoint, {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
+      if (res.token && typeof window !== 'undefined') {
+        localStorage.setItem('trao_token', res.token);
+      }
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.message || 'Authentication failed');

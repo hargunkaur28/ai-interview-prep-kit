@@ -60,7 +60,7 @@ authRouter.post('/register', async (req: Request, res: Response): Promise<void> 
     res.cookie('token', token, {
       httpOnly: true,
       secure: config.nodeEnv === 'production',
-      sameSite: 'lax',
+      sameSite: config.nodeEnv === 'production' ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -69,6 +69,7 @@ authRouter.post('/register', async (req: Request, res: Response): Promise<void> 
         id: user._id.toString(),
         email: user.email,
       },
+      token,
     });
   } catch (error: any) {
     console.error('[Auth] Register error:', error);
@@ -107,7 +108,7 @@ authRouter.post('/login', async (req: Request, res: Response): Promise<void> => 
     res.cookie('token', token, {
       httpOnly: true,
       secure: config.nodeEnv === 'production',
-      sameSite: 'lax',
+      sameSite: config.nodeEnv === 'production' ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -116,6 +117,7 @@ authRouter.post('/login', async (req: Request, res: Response): Promise<void> => 
         id: user._id.toString(),
         email: user.email,
       },
+      token,
     });
   } catch (error: any) {
     console.error('[Auth] Login error:', error);
@@ -145,6 +147,10 @@ authRouter.get('/me', requireAuth, async (req: AuthenticatedRequest, res: Respon
 
 // Logout
 authRouter.post('/logout', (req: Request, res: Response): void => {
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: config.nodeEnv === 'production',
+    sameSite: config.nodeEnv === 'production' ? 'none' : 'lax',
+  });
   res.json({ success: true });
 });

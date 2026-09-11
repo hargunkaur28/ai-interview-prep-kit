@@ -22,6 +22,9 @@ export function Navbar({ userEmail }: NavbarProps) {
     } catch {
       // ignore error
     }
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('trao_token');
+    }
     router.push('/');
   };
 
