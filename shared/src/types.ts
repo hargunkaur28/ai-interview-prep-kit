@@ -143,7 +143,7 @@ export function toAppendixAKit(internal: InternalKit | AppendixAKit): AppendixAK
       requirement_ids: [...q.requirement_ids],
       category: q.category,
       prompt: q.prompt,
-      answer_outline: q.answer_outline,
+      answer_outline: Array.isArray(q.answer_outline) ? q.answer_outline.join(' ') : String(q.answer_outline || ''),
       difficulty: q.difficulty,
     })),
     flashcards: internal.flashcards.map(f => ({

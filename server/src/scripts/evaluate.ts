@@ -4,6 +4,7 @@ import minimist from 'minimist';
 import { BatchCaseInput, BatchCaseOutput, BatchOutput, toAppendixAKit } from '@trao/shared';
 import { runPipeline } from '../services/pipeline';
 import { config } from '../config';
+import { GroqTokenScheduler } from '../services/scheduler';
 
 async function main() {
   const argv = minimist(process.argv.slice(2), {
@@ -109,6 +110,10 @@ async function main() {
     }
   }
 
+  const schedulerMetrics = GroqTokenScheduler.getInstance().getMetrics();
+  const okCount = results.filter(r => r.status === 'ok').length;
+  const failedCount = results.filter(r => r.status === 'failed').length;
+
   const outputPayload: BatchOutput = {
     version: '1.0',
     generated_at: new Date().toISOString(),
@@ -122,8 +127,20 @@ async function main() {
   }
 
   fs.writeFileSync(resolvedOutput, JSON.stringify(outputPayload, null, 2), 'utf-8');
-  console.log(`\n[Batch Evaluate] All ${results.length} cases processed.`);
+  console.log(`\n======================================================`);
+  console.log(`[Batch Evaluate] All ${results.length} cases processed.`);
   console.log(`[Batch Evaluate] Output written to: "${outputPath}"`);
+  console.log(`======================================================`);
+  console.log(`EVALUATION METRICS & TOKEN SCHEDULER REPORT:`);
+  console.log(`------------------------------------------------------`);
+  console.log(`• Total Cases:                ${results.length} (OK: ${okCount}, Failed: ${failedCount})`);
+  console.log(`• Groq Requests Dispatched:   ${schedulerMetrics.totalDispatched}`);
+  console.log(`• Total 429 Retries:          ${schedulerMetrics.totalRetries}`);
+  console.log(`• Fallback Invocations:       ${schedulerMetrics.fallbackCount}`);
+  console.log(`• Delayed/Queued Requests:    ${schedulerMetrics.queuedRequestsCount}`);
+  console.log(`• Total Queue/Wait Time:      ${schedulerMetrics.totalQueueWaitMs} ms (${(schedulerMetrics.totalQueueWaitMs / 1000).toFixed(2)}s)`);
+  console.log(`  *(Note: Waiting for 60s capacity window is expected scheduler pacing, not an API failure)*`);
+  console.log(`======================================================\n`);
 }
 
 main().catch(err => {

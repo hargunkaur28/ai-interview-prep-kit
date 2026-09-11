@@ -8,7 +8,14 @@ import {
   toAppendixAKit,
   validateAppendixAKit,
 } from '@trao/shared';
-import { extractRequirementsFromJD, generateCompanyBrief, generateQuestionsForCategory, generateGapQuestions, generateFlashcards } from './groq';
+import {
+  extractRequirementsFromJD,
+  generateCompanyBrief,
+  generateAllCategorizedQuestions,
+  generateQuestionsForCategory,
+  generateGapQuestions,
+  generateFlashcards,
+} from './groq';
 import { crawlCompanyWebsite } from './crawler';
 import { searchPublicInterviewDiscussion } from './discussion';
 import { checkCoverage } from '../domain/coverage';
@@ -119,28 +126,20 @@ export async function runPipeline(options: PipelineOptions): Promise<InternalKit
     data: { companyBrief },
   });
 
-  // Stage 5: Categorized Question Generation
+  // Stage 5: Categorized Question Generation (Combined single request, 700 tokens ceiling)
   notify({
     stage: 'generating_questions',
     status: 'running',
     message: 'Generating categorized interview question bank...',
   });
 
-  const categories: QuestionCategory[] = ['technical', 'behavioural', 'system-design', 'company-fit'];
-  const questions: Question[] = [];
-  let questionCounter = 1;
-
-  for (const cat of categories) {
-    const catQuestions = await generateQuestionsForCategory(
-      cat,
-      role.requirements,
-      role,
-      companyBrief,
-      questionCounter
-    );
-    questions.push(...catQuestions);
-    questionCounter += catQuestions.length;
-  }
+  const questions: Question[] = await generateAllCategorizedQuestions(
+    role.requirements,
+    role,
+    companyBrief,
+    1
+  );
+  let questionCounter = questions.length + 1;
 
   notify({
     stage: 'generating_questions',
