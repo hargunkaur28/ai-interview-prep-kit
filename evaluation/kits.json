@@ -1,0 +1,1162 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-09-11T16:43:23.728Z",
+  "kits": [
+    {
+      "id": "case-01-full-stack",
+      "status": "ok",
+      "kit": {
+        "source": {
+          "company": "Posthog",
+          "company_url": "https://posthog.com",
+          "role": "Senior Full",
+          "location": "Not Specified",
+          "jd_chars": 430,
+          "researched_at": "2026-09-11T16:43:17.408Z",
+          "pages_used": [
+            "https://posthog.com/",
+            "https://posthog.com/handbook",
+            "https://posthog.com/careers",
+            "https://posthog.com/handbook/why-does-posthog-exist"
+          ]
+        },
+        "company_brief": {
+          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
+          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "sources": [
+            "https://example.com"
+          ]
+        },
+        "role": {
+          "title": "Senior Full",
+          "seniority": "Senior",
+          "responsibilities": [
+            "Develop and maintain scalable software solutions",
+            "Collaborate with cross-functional product and design teams",
+            "Write clean, well-tested, and maintainable code"
+          ],
+          "requirements": [
+            {
+              "id": "r1",
+              "text": "Core software engineering and architecture experience",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r2",
+              "text": "API design, database modeling, and backend systems",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r3",
+              "text": "Effective technical communication and team collaboration",
+              "kind": "behavioural",
+              "priority": "must"
+            },
+            {
+              "id": "r4",
+              "text": "Experience with cloud infrastructure and deployment",
+              "kind": "domain",
+              "priority": "nice"
+            }
+          ]
+        },
+        "questions": [
+          {
+            "id": "q1",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q2",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q3",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "behavioural",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q4",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "behavioural",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q5",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "system-design",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q6",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "system-design",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q7",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "company-fit",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q8",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "company-fit",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q9",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q10",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          }
+        ],
+        "flashcards": [
+          {
+            "id": "f1",
+            "front": "What are ACID properties in database transactions?",
+            "back": "Atomicity, Consistency, Isolation, and Durability ensure reliable transaction processing.",
+            "requirement_ids": [
+              "r2"
+            ]
+          },
+          {
+            "id": "f2",
+            "front": "Explain the difference between horizontal and vertical scaling.",
+            "back": "Horizontal adds more machines/nodes; Vertical adds more resources (CPU/RAM) to existing machine.",
+            "requirement_ids": [
+              "r1"
+            ]
+          }
+        ],
+        "schedule": {
+          "days_available": 5,
+          "days": [
+            {
+              "day": 1,
+              "focus": "Core Must-Have Requirements & Technical Fundamentals",
+              "question_ids": [
+                "q6",
+                "q5"
+              ],
+              "minutes": 50
+            },
+            {
+              "day": 2,
+              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "question_ids": [
+                "q2",
+                "q1"
+              ],
+              "minutes": 50
+            },
+            {
+              "day": 3,
+              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "question_ids": [
+                "q10",
+                "q9"
+              ],
+              "minutes": 50
+            },
+            {
+              "day": 4,
+              "focus": "Leadership, Collaboration & Scenario-Based Questions",
+              "question_ids": [
+                "q4",
+                "q3"
+              ],
+              "minutes": 50
+            },
+            {
+              "day": 5,
+              "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
+              "question_ids": [
+                "q8",
+                "q7"
+              ],
+              "minutes": 50
+            }
+          ]
+        },
+        "coverage": {
+          "uncovered_requirement_ids": [
+            "r3",
+            "r4"
+          ],
+          "passes": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "id": "case-02-thin-stub",
+      "status": "ok",
+      "kit": {
+        "source": {
+          "company": "Example",
+          "company_url": "https://example.com",
+          "role": "Backend Developer",
+          "location": "Not Specified",
+          "jd_chars": 46,
+          "researched_at": "2026-09-11T16:43:18.601Z",
+          "pages_used": [
+            "https://example.com/"
+          ]
+        },
+        "company_brief": {
+          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
+          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "sources": [
+            "https://example.com"
+          ]
+        },
+        "role": {
+          "title": "Backend Developer",
+          "seniority": "Mid-Level",
+          "responsibilities": [
+            "Develop and maintain scalable software solutions",
+            "Collaborate with cross-functional product and design teams",
+            "Write clean, well-tested, and maintainable code"
+          ],
+          "requirements": [
+            {
+              "id": "r1",
+              "text": "Core software engineering and architecture experience",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r2",
+              "text": "API design, database modeling, and backend systems",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r3",
+              "text": "Effective technical communication and team collaboration",
+              "kind": "behavioural",
+              "priority": "must"
+            },
+            {
+              "id": "r4",
+              "text": "Experience with cloud infrastructure and deployment",
+              "kind": "domain",
+              "priority": "nice"
+            }
+          ]
+        },
+        "questions": [
+          {
+            "id": "q1",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q2",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q3",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "behavioural",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q4",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "behavioural",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q5",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "system-design",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q6",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "system-design",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q7",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "company-fit",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q8",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "company-fit",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q9",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q10",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          }
+        ],
+        "flashcards": [
+          {
+            "id": "f1",
+            "front": "What are ACID properties in database transactions?",
+            "back": "Atomicity, Consistency, Isolation, and Durability ensure reliable transaction processing.",
+            "requirement_ids": [
+              "r2"
+            ]
+          },
+          {
+            "id": "f2",
+            "front": "Explain the difference between horizontal and vertical scaling.",
+            "back": "Horizontal adds more machines/nodes; Vertical adds more resources (CPU/RAM) to existing machine.",
+            "requirement_ids": [
+              "r1"
+            ]
+          }
+        ],
+        "schedule": {
+          "days_available": 3,
+          "days": [
+            {
+              "day": 1,
+              "focus": "Core Must-Have Requirements & Technical Fundamentals",
+              "question_ids": [
+                "q6",
+                "q4",
+                "q1",
+                "q7"
+              ],
+              "minutes": 80
+            },
+            {
+              "day": 2,
+              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "question_ids": [
+                "q2",
+                "q8",
+                "q9"
+              ],
+              "minutes": 65
+            },
+            {
+              "day": 3,
+              "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
+              "question_ids": [
+                "q10",
+                "q5",
+                "q3"
+              ],
+              "minutes": 65
+            }
+          ]
+        },
+        "coverage": {
+          "uncovered_requirement_ids": [
+            "r3",
+            "r4"
+          ],
+          "passes": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "id": "case-03-unreachable-url",
+      "status": "ok",
+      "kit": {
+        "source": {
+          "company": "This-company-domain-does-not-exist-404-test",
+          "company_url": "https://this-company-domain-does-not-exist-404-test.xyz",
+          "role": "Frontend Engineer",
+          "location": "Not Specified",
+          "jd_chars": 155,
+          "researched_at": "2026-09-11T16:43:19.792Z",
+          "pages_used": [
+            "https://this-company-domain-does-not-exist-404-test.xyz"
+          ]
+        },
+        "company_brief": {
+          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
+          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "sources": [
+            "https://example.com"
+          ]
+        },
+        "role": {
+          "title": "Frontend Engineer",
+          "seniority": "Mid-Level",
+          "responsibilities": [
+            "Develop and maintain scalable software solutions",
+            "Collaborate with cross-functional product and design teams",
+            "Write clean, well-tested, and maintainable code"
+          ],
+          "requirements": [
+            {
+              "id": "r1",
+              "text": "Core software engineering and architecture experience",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r2",
+              "text": "API design, database modeling, and backend systems",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r3",
+              "text": "Effective technical communication and team collaboration",
+              "kind": "behavioural",
+              "priority": "must"
+            },
+            {
+              "id": "r4",
+              "text": "Experience with cloud infrastructure and deployment",
+              "kind": "domain",
+              "priority": "nice"
+            }
+          ]
+        },
+        "questions": [
+          {
+            "id": "q1",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q2",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q3",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "behavioural",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q4",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "behavioural",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q5",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "system-design",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q6",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "system-design",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q7",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "company-fit",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q8",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "company-fit",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q9",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q10",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          }
+        ],
+        "flashcards": [
+          {
+            "id": "f1",
+            "front": "What are ACID properties in database transactions?",
+            "back": "Atomicity, Consistency, Isolation, and Durability ensure reliable transaction processing.",
+            "requirement_ids": [
+              "r2"
+            ]
+          },
+          {
+            "id": "f2",
+            "front": "Explain the difference between horizontal and vertical scaling.",
+            "back": "Horizontal adds more machines/nodes; Vertical adds more resources (CPU/RAM) to existing machine.",
+            "requirement_ids": [
+              "r1"
+            ]
+          }
+        ],
+        "schedule": {
+          "days_available": 4,
+          "days": [
+            {
+              "day": 1,
+              "focus": "Core Must-Have Requirements & Technical Fundamentals",
+              "question_ids": [
+                "q6",
+                "q8",
+                "q3"
+              ],
+              "minutes": 65
+            },
+            {
+              "day": 2,
+              "focus": "System Architecture, Scalability & Design Trade-offs",
+              "question_ids": [
+                "q2",
+                "q5",
+                "q7"
+              ],
+              "minutes": 65
+            },
+            {
+              "day": 3,
+              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "question_ids": [
+                "q10",
+                "q1"
+              ],
+              "minutes": 50
+            },
+            {
+              "day": 4,
+              "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
+              "question_ids": [
+                "q4",
+                "q9"
+              ],
+              "minutes": 50
+            }
+          ]
+        },
+        "coverage": {
+          "uncovered_requirement_ids": [
+            "r3",
+            "r4"
+          ],
+          "passes": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "id": "case-04-single-day-intensive",
+      "status": "ok",
+      "kit": {
+        "source": {
+          "company": "About",
+          "company_url": "https://about.gitlab.com",
+          "role": "DevOps Engineer",
+          "location": "Not Specified",
+          "jd_chars": 145,
+          "researched_at": "2026-09-11T16:43:22.718Z",
+          "pages_used": [
+            "https://about.gitlab.com/",
+            "https://about.gitlab.com/assessments/devops-modernization-assessment/",
+            "https://about.gitlab.com/assessments/security-modernization-assessment/",
+            "https://about.gitlab.com/assessments/ai-modernization-assessment/"
+          ]
+        },
+        "company_brief": {
+          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
+          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "sources": [
+            "https://example.com"
+          ]
+        },
+        "role": {
+          "title": "DevOps Engineer",
+          "seniority": "Mid-Level",
+          "responsibilities": [
+            "Develop and maintain scalable software solutions",
+            "Collaborate with cross-functional product and design teams",
+            "Write clean, well-tested, and maintainable code"
+          ],
+          "requirements": [
+            {
+              "id": "r1",
+              "text": "Core software engineering and architecture experience",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r2",
+              "text": "API design, database modeling, and backend systems",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r3",
+              "text": "Effective technical communication and team collaboration",
+              "kind": "behavioural",
+              "priority": "must"
+            },
+            {
+              "id": "r4",
+              "text": "Experience with cloud infrastructure and deployment",
+              "kind": "domain",
+              "priority": "nice"
+            }
+          ]
+        },
+        "questions": [
+          {
+            "id": "q1",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q2",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q3",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "behavioural",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q4",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "behavioural",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q5",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "system-design",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q6",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "system-design",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q7",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "company-fit",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q8",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "company-fit",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q9",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q10",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          }
+        ],
+        "flashcards": [
+          {
+            "id": "f1",
+            "front": "What are ACID properties in database transactions?",
+            "back": "Atomicity, Consistency, Isolation, and Durability ensure reliable transaction processing.",
+            "requirement_ids": [
+              "r2"
+            ]
+          },
+          {
+            "id": "f2",
+            "front": "Explain the difference between horizontal and vertical scaling.",
+            "back": "Horizontal adds more machines/nodes; Vertical adds more resources (CPU/RAM) to existing machine.",
+            "requirement_ids": [
+              "r1"
+            ]
+          }
+        ],
+        "schedule": {
+          "days_available": 1,
+          "days": [
+            {
+              "day": 1,
+              "focus": "Intensive Review: Core Technical, Architecture & Behavioral Alignment",
+              "question_ids": [
+                "q6",
+                "q2",
+                "q10",
+                "q4",
+                "q8",
+                "q5",
+                "q1",
+                "q9",
+                "q3",
+                "q7"
+              ],
+              "minutes": 150
+            }
+          ]
+        },
+        "coverage": {
+          "uncovered_requirement_ids": [
+            "r3",
+            "r4"
+          ],
+          "passes": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "id": "case-05-local-url",
+      "status": "ok",
+      "kit": {
+        "source": {
+          "company": "Localhost",
+          "company_url": "http://localhost:8099/mock-company",
+          "role": "Software Engineer",
+          "location": "Not Specified",
+          "jd_chars": 109,
+          "researched_at": "2026-09-11T16:43:23.728Z",
+          "pages_used": [
+            "http://localhost:8099/mock-company"
+          ]
+        },
+        "company_brief": {
+          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
+          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "sources": [
+            "https://example.com"
+          ]
+        },
+        "role": {
+          "title": "Software Engineer",
+          "seniority": "Mid-Level",
+          "responsibilities": [
+            "Develop and maintain scalable software solutions",
+            "Collaborate with cross-functional product and design teams",
+            "Write clean, well-tested, and maintainable code"
+          ],
+          "requirements": [
+            {
+              "id": "r1",
+              "text": "Core software engineering and architecture experience",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r2",
+              "text": "API design, database modeling, and backend systems",
+              "kind": "technical",
+              "priority": "must"
+            },
+            {
+              "id": "r3",
+              "text": "Effective technical communication and team collaboration",
+              "kind": "behavioural",
+              "priority": "must"
+            },
+            {
+              "id": "r4",
+              "text": "Experience with cloud infrastructure and deployment",
+              "kind": "domain",
+              "priority": "nice"
+            }
+          ]
+        },
+        "questions": [
+          {
+            "id": "q1",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q2",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q3",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "behavioural",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q4",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "behavioural",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q5",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "system-design",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q6",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "system-design",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q7",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "company-fit",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q8",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "company-fit",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          },
+          {
+            "id": "q9",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "technical",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q10",
+            "requirement_ids": [
+              "r2"
+            ],
+            "category": "technical",
+            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
+            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "difficulty": 3
+          }
+        ],
+        "flashcards": [
+          {
+            "id": "f1",
+            "front": "What are ACID properties in database transactions?",
+            "back": "Atomicity, Consistency, Isolation, and Durability ensure reliable transaction processing.",
+            "requirement_ids": [
+              "r2"
+            ]
+          },
+          {
+            "id": "f2",
+            "front": "Explain the difference between horizontal and vertical scaling.",
+            "back": "Horizontal adds more machines/nodes; Vertical adds more resources (CPU/RAM) to existing machine.",
+            "requirement_ids": [
+              "r1"
+            ]
+          }
+        ],
+        "schedule": {
+          "days_available": 7,
+          "days": [
+            {
+              "day": 1,
+              "focus": "Core Must-Have Requirements & Technical Fundamentals",
+              "question_ids": [
+                "q6",
+                "q9"
+              ],
+              "minutes": 50
+            },
+            {
+              "day": 2,
+              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "question_ids": [
+                "q2",
+                "q3"
+              ],
+              "minutes": 50
+            },
+            {
+              "day": 3,
+              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "question_ids": [
+                "q10",
+                "q7"
+              ],
+              "minutes": 50
+            },
+            {
+              "day": 4,
+              "focus": "Leadership, Collaboration & Scenario-Based Questions",
+              "question_ids": [
+                "q4"
+              ],
+              "minutes": 35
+            },
+            {
+              "day": 5,
+              "focus": "Leadership, Collaboration & Scenario-Based Questions",
+              "question_ids": [
+                "q8"
+              ],
+              "minutes": 35
+            },
+            {
+              "day": 6,
+              "focus": "System Architecture, Scalability & Design Trade-offs",
+              "question_ids": [
+                "q5"
+              ],
+              "minutes": 35
+            },
+            {
+              "day": 7,
+              "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
+              "question_ids": [
+                "q1"
+              ],
+              "minutes": 35
+            }
+          ]
+        },
+        "coverage": {
+          "uncovered_requirement_ids": [
+            "r3",
+            "r4"
+          ],
+          "passes": 2
+        }
+      },
+      "error": null
+    }
+  ]
+}

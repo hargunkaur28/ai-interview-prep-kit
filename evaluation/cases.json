@@ -1,0 +1,32 @@
+[
+  {
+    "id": "case-01-full-stack",
+    "jd": "Senior Full-Stack Engineer\n\nWe are looking for an experienced engineer to lead frontend architecture and distributed backend services. Requirements: 5+ years of production experience with TypeScript and React. Deep understanding of Node.js microservices, PostgreSQL, and event-driven architecture. Mentoring junior developers and conducting code reviews is essential. Bonus points for experience with Kubernetes and AWS Terraform.",
+    "company_url": "https://posthog.com",
+    "days": 5
+  },
+  {
+    "id": "case-02-thin-stub",
+    "jd": "Backend Developer\nMust know Python and Docker.",
+    "company_url": "https://example.com",
+    "days": 3
+  },
+  {
+    "id": "case-03-unreachable-url",
+    "jd": "Frontend Engineer\nStrong experience with modern CSS, Tailwind, and React performance optimization. Experience with accessibility standards (WCAG) required.",
+    "company_url": "https://this-company-domain-does-not-exist-404-test.xyz",
+    "days": 4
+  },
+  {
+    "id": "case-04-single-day-intensive",
+    "jd": "DevOps Engineer\nMandatory requirements: CI/CD automation with GitHub Actions, Linux system administration, and infrastructure security hardening.",
+    "company_url": "https://about.gitlab.com",
+    "days": 1
+  },
+  {
+    "id": "case-05-local-url",
+    "jd": "Software Engineer\nExperience building REST APIs with Express and writing automated tests with Jest or Vitest.",
+    "company_url": "http://localhost:8099/mock-company",
+    "days": 7
+  }
+]
