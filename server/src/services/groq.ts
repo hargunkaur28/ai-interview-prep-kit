@@ -32,7 +32,7 @@ export async function callGroqWithRetry(
   userPrompt: string,
   temperature: number = 0.2
 ): Promise<string> {
-  // If no API key is provided, use fallback heuristic generator
+  // If no API key is provided, use heuristic fallback generator
   if (!config.groqApiKey) {
     return generateFallbackResponse(systemPrompt, userPrompt);
   }
@@ -40,11 +40,12 @@ export async function callGroqWithRetry(
   const client = getGroqClient();
   const maxRetries = 3;
   let delay = 2000;
+  let modelToUse = config.groqModel;
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       const response = await client.chat.completions.create({
-        model: config.groqModel,
+        model: modelToUse,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt },
@@ -56,6 +57,20 @@ export async function callGroqWithRetry(
       const content = response.choices[0]?.message?.content || '{}';
       return content;
     } catch (error: any) {
+      const isModelNotFound = error?.status === 404 || error?.message?.includes('model_not_found');
+
+      if (isModelNotFound) {
+        if (config.groqFallbackModel && modelToUse !== config.groqFallbackModel) {
+          console.warn(`[Groq] Configured model "${modelToUse}" returned model_not_found. Falling back to explicit GROQ_FALLBACK_MODEL: "${config.groqFallbackModel}".`);
+          modelToUse = config.groqFallbackModel;
+          continue;
+        } else {
+          throw new Error(
+            `Configured Groq model "${modelToUse}" was not found (404). Please update GROQ_MODEL or GROQ_FALLBACK_MODEL in .env to an active model for your account.`
+          );
+        }
+      }
+
       const isRateLimit = error?.status === 429 || error?.message?.includes('rate_limit') || error?.message?.includes('429');
       const isOverloaded = error?.status === 503 || error?.message?.includes('overloaded');
 
@@ -65,6 +80,7 @@ export async function callGroqWithRetry(
         delay *= 2;
         continue;
       }
+
       console.error(`[Groq] Request failed on attempt ${attempt}:`, error?.message || error);
       if (attempt === maxRetries) {
         console.warn('[Groq] Retries exhausted. Utilizing fallback response generator.');
@@ -121,21 +137,53 @@ RULES:
 
   const userPrompt = `Job Description:\n"""\n${jdText}\n"""`;
   const raw = await callGroqWithRetry(systemPrompt, userPrompt, 0.1);
-  const parsed = cleanJsonParse<RoleInfo>(raw, {} as any);
+  const parsed = cleanJsonParse<any>(raw, {} as any);
+
+  // Deterministic field normalization (role_title -> title)
+  const title = parsed?.title || parsed?.role_title || 'Software Engineer';
+  const seniority = parsed?.seniority || 'Not Specified';
+  const responsibilities = Array.isArray(parsed?.responsibilities) ? parsed.responsibilities : [];
+
   const rawReqs = Array.isArray(parsed?.requirements) && parsed.requirements.length > 0
     ? parsed.requirements
     : [{ id: 'r1', text: 'Core role responsibilities and qualifications', kind: 'technical' as const, priority: 'must' as const }];
 
   return {
-    title: parsed?.title || 'Software Engineer',
-    seniority: parsed?.seniority || 'Not Specified',
-    responsibilities: Array.isArray(parsed?.responsibilities) ? parsed.responsibilities : [],
-    requirements: rawReqs.map((req, idx) => ({
-      id: req.id && /^r\d+$/.test(req.id) ? req.id : `r${idx + 1}`,
-      text: req.text || 'Requirement',
-      kind: ['technical', 'behavioural', 'domain'].includes(req.kind) ? req.kind : 'technical',
-      priority: ['must', 'nice'].includes(req.priority) ? req.priority : 'must',
-    })),
+    title,
+    seniority,
+    responsibilities,
+    requirements: rawReqs.map((req: any, idx: number) => {
+      // Deterministic priority normalization: mandatory/required -> must, optional/bonus -> nice
+      let priority: 'must' | 'nice' = 'must';
+      const rawPriority = String(req?.priority || '').toLowerCase();
+      if (rawPriority === 'must' || rawPriority === 'mandatory' || rawPriority === 'required') {
+        priority = 'must';
+      } else if (rawPriority === 'nice' || rawPriority === 'optional' || rawPriority === 'preferred' || rawPriority === 'bonus') {
+        priority = 'nice';
+      } else {
+        priority = 'must';
+      }
+
+      // Deterministic kind normalization: skill -> technical
+      let kind: 'technical' | 'behavioural' | 'domain' = 'technical';
+      const rawKind = String(req?.kind || '').toLowerCase();
+      if (rawKind === 'technical' || rawKind === 'skill' || rawKind === 'tech' || rawKind === 'hard-skill') {
+        kind = 'technical';
+      } else if (rawKind === 'behavioural' || rawKind === 'behavioral' || rawKind === 'soft-skill' || rawKind === 'culture') {
+        kind = 'behavioural';
+      } else if (rawKind === 'domain' || rawKind === 'industry' || rawKind === 'business') {
+        kind = 'domain';
+      } else {
+        kind = 'technical';
+      }
+
+      return {
+        id: `r${idx + 1}`,
+        text: req?.text || 'Requirement',
+        kind,
+        priority,
+      };
+    }),
   };
 }
 

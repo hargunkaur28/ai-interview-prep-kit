@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-09-11T16:43:23.728Z",
+  "generated_at": "2026-09-11T17:21:59.516Z",
   "kits": [
     {
       "id": "case-01-full-stack",
@@ -9,10 +9,10 @@
         "source": {
           "company": "Posthog",
           "company_url": "https://posthog.com",
-          "role": "Senior Full",
+          "role": "Senior Full-Stack Engineer",
           "location": "Not Specified",
           "jd_chars": 430,
-          "researched_at": "2026-09-11T16:43:17.408Z",
+          "researched_at": "2026-09-11T17:09:24.316Z",
           "pages_used": [
             "https://posthog.com/",
             "https://posthog.com/handbook",
@@ -21,43 +21,47 @@
           ]
         },
         "company_brief": {
-          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
-          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "summary": "PostHog is a product analytics and engineering platform with over 500,000 teams, focused on enabling engineers to make product decisions through an integrated suite of tools. The company operates with a 'small teams' structure, allowing employees to work in startup-like environments within a larger organization of 230+ people. Key strategic goals include becoming the source of truth for product context and automating the iteration process. Candidates should be prepared to discuss how they leverage data to drive product decisions and their experience with integrated engineering tools.",
+          "what_they_do": "PostHog provides a unified platform for product analytics, web analytics, session replay, feature flags, experiments, surveys, error tracking, and a managed data warehouse. Their core value proposition is combining these tools into a single 'context warehouse' that allows engineers and AI agents to query data from 120+ external sources (like Stripe and Postgres) alongside internal product insights. This integration aims to reduce the need for multiple disparate tools and help developers build successful products more efficiently.",
           "sources": [
-            "https://example.com"
+            "https://posthog.com/",
+            "https://posthog.com/handbook",
+            "https://posthog.com/careers",
+            "https://posthog.com/handbook/why-does-posthog-exist"
           ]
         },
         "role": {
-          "title": "Senior Full",
+          "title": "Senior Full-Stack Engineer",
           "seniority": "Senior",
           "responsibilities": [
-            "Develop and maintain scalable software solutions",
-            "Collaborate with cross-functional product and design teams",
-            "Write clean, well-tested, and maintainable code"
+            "Lead frontend architecture",
+            "Lead distributed backend services",
+            "Mentor junior developers",
+            "Conduct code reviews"
           ],
           "requirements": [
             {
               "id": "r1",
-              "text": "Core software engineering and architecture experience",
+              "text": "5+ years of production experience with TypeScript and React",
               "kind": "technical",
               "priority": "must"
             },
             {
               "id": "r2",
-              "text": "API design, database modeling, and backend systems",
+              "text": "Deep understanding of Node.js microservices, PostgreSQL, and event-driven architecture",
               "kind": "technical",
               "priority": "must"
             },
             {
               "id": "r3",
-              "text": "Effective technical communication and team collaboration",
+              "text": "Mentoring junior developers and conducting code reviews",
               "kind": "behavioural",
               "priority": "must"
             },
             {
               "id": "r4",
-              "text": "Experience with cloud infrastructure and deployment",
-              "kind": "domain",
+              "text": "Experience with Kubernetes and AWS Terraform",
+              "kind": "technical",
               "priority": "nice"
             }
           ]
@@ -69,8 +73,8 @@
               "r1"
             ],
             "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "prompt": "In a large-scale React application like PostHog's, how do you manage complex state across deeply nested components without causing performance bottlenecks? Specifically, discuss your strategy for using TypeScript to enforce type safety in state management libraries like Redux or Zustand, and how you handle asynchronous data fetching patterns.",
+            "answer_outline": "The candidate should discuss specific state management patterns (e.g., normalized state, selectors, memoization). They should demonstrate deep TypeScript knowledge by showing how they define state interfaces, use generics for actions/reducers, or leverage utility types to prevent runtime errors. They should also mention performance optimization techniques like React.memo, useMemo, and avoiding unnecessary re-renders. A strong answer will connect these technical choices to the user experience in a data-heavy analytics dashboard.",
             "difficulty": 2
           },
           {
@@ -79,106 +83,190 @@
               "r2"
             ],
             "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "prompt": "PostHog relies heavily on event-driven architecture to process millions of events daily. Describe how you would design a Node.js microservice that consumes events from a message broker (like Kafka or RabbitMQ) and persists them to PostgreSQL. How do you handle idempotency, backpressure, and ensuring data consistency in a distributed system?",
+            "answer_outline": "The candidate should outline a robust consumer pattern, including acknowledgment mechanisms (manual vs. auto) to prevent data loss. They must address idempotency by using unique event IDs or database constraints to handle duplicate messages. They should discuss backpressure strategies (e.g., limiting concurrent processing, batching writes) to prevent the service from being overwhelmed. Finally, they should explain how to maintain consistency, potentially using transactional outbox patterns or eventual consistency checks, and how to monitor lag and errors.",
             "difficulty": 3
           },
           {
             "id": "q3",
             "requirement_ids": [
-              "r1"
+              "r1",
+              "r2"
             ],
-            "category": "behavioural",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
-            "difficulty": 2
+            "category": "technical",
+            "prompt": "Imagine you are building a real-time feature in PostHog where users see live session replays. How would you architect the data flow from the client (React/TypeScript) through the backend (Node.js) to the database (PostgreSQL) to ensure low latency? What specific challenges arise when scaling this to thousands of concurrent users, and how would you mitigate them?",
+            "answer_outline": "The candidate should propose a WebSocket or Server-Sent Events (SSE) architecture for real-time communication. They should discuss how to structure the Node.js service to handle high concurrency (e.g., using worker threads, clustering, or offloading heavy processing to a separate queue). For PostgreSQL, they should mention connection pooling (e.g., PgBouncer) and potentially partitioning tables for session data. They should also address the frontend challenge of efficiently rendering high-frequency updates without blocking the main thread, perhaps using virtualization or requestAnimationFrame.",
+            "difficulty": 3
           },
           {
             "id": "q4",
             "requirement_ids": [
-              "r2"
+              "r4"
             ],
-            "category": "behavioural",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
+            "category": "technical",
+            "prompt": "We are migrating a critical analytics service to Kubernetes on AWS. You are responsible for the infrastructure-as-code using Terraform. How do you structure your Terraform modules to ensure reusability and maintainability? How do you handle secrets management and ensure that your Kubernetes deployments are resilient to node failures?",
+            "answer_outline": "The candidate should describe a modular Terraform structure (e.g., separate modules for VPC, EKS cluster, and application resources) to promote reusability. They should discuss secrets management using AWS Secrets Manager or HashiCorp Vault, integrated with Kubernetes via CSI drivers or init containers. For resilience, they should mention setting appropriate liveness/readiness probes, defining resource requests/limits, using Pod Disruption Budgets (PDBs), and ensuring the application is stateless or uses persistent volumes correctly to survive node restarts.",
+            "difficulty": 2
           },
           {
             "id": "q5",
             "requirement_ids": [
-              "r1"
+              "r3"
             ],
-            "category": "system-design",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "category": "behavioural",
+            "prompt": "Tell me about a time you mentored a junior developer who was struggling with a complex technical challenge. How did you approach the situation, and what was the outcome?",
+            "answer_outline": "A strong candidate would describe a specific instance where they identified a junior developer's struggle, provided guidance without taking over the task, and helped the junior developer develop problem-solving skills. They should mention the technical challenge, the mentoring approach (e.g., Socratic questioning, pair programming), and the positive outcome for both the junior developer and the project.",
             "difficulty": 2
           },
           {
             "id": "q6",
             "requirement_ids": [
-              "r2"
+              "r3"
             ],
-            "category": "system-design",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
+            "category": "behavioural",
+            "prompt": "Describe a situation where you had to conduct a code review that required significant changes. How did you communicate your feedback, and how did the developer respond?",
+            "answer_outline": "The candidate should outline a scenario where they provided constructive feedback on a code review, emphasizing clarity, respect, and a focus on improving the codebase. They should discuss how they balanced technical rigor with empathy, and how the developer reacted and ultimately improved the code.",
+            "difficulty": 2
           },
           {
             "id": "q7",
             "requirement_ids": [
-              "r1"
+              "r3"
             ],
-            "category": "company-fit",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
-            "difficulty": 2
+            "category": "behavioural",
+            "prompt": "How do you ensure that your mentoring and code review practices contribute to the overall growth of your team? Can you give an example of a systemic improvement you introduced based on feedback from junior developers?",
+            "answer_outline": "A strong answer would highlight the candidate's ability to reflect on their mentoring and code review practices, identify areas for improvement, and implement changes that benefit the team. They should provide a concrete example of a process or tool they introduced to enhance learning and collaboration.",
+            "difficulty": 3
           },
           {
             "id": "q8",
             "requirement_ids": [
               "r2"
             ],
-            "category": "company-fit",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "category": "system-design",
+            "prompt": "PostHog processes millions of events per second from over 500,000 teams. Design a scalable event ingestion pipeline that handles high-throughput data from diverse clients (web, mobile, server-side) while ensuring data integrity and low latency. How would you structure the microservices and event-driven components to support this?",
+            "answer_outline": "The candidate should propose a decoupled architecture using a message broker (e.g., Kafka or Kinesis) to buffer incoming events. They should discuss the use of Node.js microservices for initial validation and normalization, followed by asynchronous processing workers. Key points should include handling backpressure, idempotency in event processing, and the trade-offs between synchronous vs. asynchronous ingestion. They should also mention how PostgreSQL is used for metadata and user properties, while time-series data might be stored in a more specialized store or partitioned tables, and how event-driven patterns (like CQRS) separate write and read models for performance.",
             "difficulty": 3
           },
           {
             "id": "q9",
             "requirement_ids": [
-              "r1"
+              "r1",
+              "r2"
             ],
-            "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "category": "system-design",
+            "prompt": "We are building a real-time feature flagging system that needs to update instantly across all user sessions without reloading the page. How would you design the frontend (React/TypeScript) and backend (Node.js) components to ensure low-latency updates and high availability, considering the scale of our user base?",
+            "answer_outline": "A strong answer involves using WebSockets or Server-Sent Events (SSE) for real-time push notifications from the backend to the frontend. The candidate should discuss the state management strategy in React (e.g., using Context API or a library like Zustand/Redux) to efficiently update only the necessary components without re-rendering the entire app. On the backend, they should describe a caching layer (e.g., Redis) to serve flag states quickly, with a fallback to the database. They should also address connection management, reconnection logic, and how to handle the fan-out of updates to millions of concurrent connections, possibly using a pub/sub pattern.",
             "difficulty": 2
           },
           {
             "id": "q10",
             "requirement_ids": [
+              "r2",
+              "r4"
+            ],
+            "category": "system-design",
+            "prompt": "Our current analytics query engine is experiencing performance degradation during peak hours. How would you design a scalable query execution layer that can handle complex, ad-hoc analytical queries over large datasets, while ensuring cost-efficiency and resource isolation for different customer tiers?",
+            "answer_outline": "The candidate should discuss the separation of OLTP (transactional) and OLAP (analytical) workloads. They might propose using a columnar database (like ClickHouse or TimescaleDB) for analytical queries, or a data warehouse (like Snowflake or BigQuery) for heavy analytics, while keeping PostgreSQL for transactional data. They should explain how to implement resource isolation using Kubernetes namespaces or separate clusters for different customer tiers (e.g., free vs. enterprise). They should also discuss query optimization, caching strategies for frequent queries, and how to monitor and alert on query performance using observability tools.",
+            "difficulty": 3
+          },
+          {
+            "id": "q11",
+            "requirement_ids": [
+              "r1",
               "r2"
             ],
-            "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "category": "company-fit",
+            "prompt": "PostHog aims to be the 'source of truth' for product context by integrating analytics directly into the engineering workflow. How would you leverage your experience with TypeScript/React and Node.js microservices to design a feature that automatically surfaces relevant product data (like feature adoption or error rates) directly within a developer's IDE or CI/CD pipeline?",
+            "answer_outline": "A strong candidate should discuss the architectural integration of a data pipeline (Node.js/PostgreSQL) that processes event data and exposes it via APIs or webhooks. They should detail how a React-based UI component or CLI tool (TypeScript) could consume this data to provide real-time context. The answer should reflect an understanding of how to bridge the gap between raw analytics and actionable engineering insights, aligning with PostHog's goal of automating the iteration process.",
+            "difficulty": 3
+          },
+          {
+            "id": "q12",
+            "requirement_ids": [
+              "r3"
+            ],
+            "category": "company-fit",
+            "prompt": "PostHog operates with a 'small teams' structure, where engineers often work in startup-like environments within a larger organization. Describe a time you had to mentor a junior developer on a complex, ambiguous problem where the 'right' solution wasn't immediately clear. How did you balance providing guidance with allowing them to own the outcome, and how did this approach impact the team's velocity and morale?",
+            "answer_outline": "The candidate should provide a specific example of mentoring in a high-ambiguity context. They should demonstrate a coaching mindset (asking questions rather than giving answers) and show how they fostered ownership. The answer should highlight how this approach aligns with PostHog's culture of empowering small teams to make autonomous decisions while maintaining high standards, ultimately improving team cohesion and long-term velocity.",
+            "difficulty": 2
+          },
+          {
+            "id": "q13",
+            "requirement_ids": [
+              "r2",
+              "r4"
+            ],
+            "category": "company-fit",
+            "prompt": "As we scale to support over 500,000 teams, reliability and cost-efficiency are critical. How would you approach designing a new event-driven service using Node.js and PostgreSQL that must handle variable traffic spikes, and how would you use Kubernetes and Terraform to ensure this service is both scalable and cost-optimized?",
+            "answer_outline": "The candidate should outline a scalable architecture using event-driven patterns (e.g., message queues) to decouple ingestion from processing. They should discuss specific Kubernetes strategies (like HPA, resource limits) and Terraform modules for infrastructure-as-code. The answer should show an understanding of the trade-offs between cost and performance, which is crucial for a company serving a massive number of teams with diverse usage patterns.",
             "difficulty": 3
           }
         ],
         "flashcards": [
           {
             "id": "f1",
-            "front": "What are ACID properties in database transactions?",
-            "back": "Atomicity, Consistency, Isolation, and Durability ensure reliable transaction processing.",
+            "front": "How do you structure a React application to handle complex state management when integrating multiple data sources (e.g., analytics, feature flags, and session replay) without causing excessive re-renders?",
+            "back": "Use a combination of React Context for global, infrequently changing state (like feature flags) and a state management library like Zustand or Redux Toolkit for high-frequency data (like live analytics). Implement memoization (React.memo, useMemo) and split components into granular, focused units to isolate re-renders. For real-time data, use WebSockets or Server-Sent Events (SSE) to push updates directly to the store, bypassing the need for polling.",
+            "requirement_ids": [
+              "r1"
+            ]
+          },
+          {
+            "id": "f2",
+            "front": "In a Node.js microservices architecture, how would you ensure data consistency when a user action triggers both an analytics event and a feature flag update?",
+            "back": "Use an event-driven architecture with a message broker (like Kafka or RabbitMQ). The primary service publishes an event to a topic. Separate consumers handle the analytics logging and the feature flag update. Implement idempotency keys to prevent duplicate processing. If strong consistency is required, use a transactional outbox pattern to ensure the event is only published after the database transaction commits.",
             "requirement_ids": [
               "r2"
             ]
           },
           {
-            "id": "f2",
-            "front": "Explain the difference between horizontal and vertical scaling.",
-            "back": "Horizontal adds more machines/nodes; Vertical adds more resources (CPU/RAM) to existing machine.",
+            "id": "f3",
+            "front": "What are the key considerations when designing a PostgreSQL schema for a unified data warehouse that ingests data from 120+ external sources?",
+            "back": "Use a star schema with fact tables for events and dimension tables for entities (users, products, sources). Implement partitioning by time (e.g., monthly) to manage large datasets. Use JSONB columns for flexible, semi-structured data from diverse sources, but index critical fields for query performance. Ensure proper indexing on foreign keys and frequently queried columns. Consider using materialized views for pre-aggregated analytics.",
+            "requirement_ids": [
+              "r2"
+            ]
+          },
+          {
+            "id": "f4",
+            "front": "How do you approach code reviews to ensure they are constructive and improve team velocity, especially when mentoring junior developers?",
+            "back": "Focus on the 'why' rather than just the 'what'. Provide context for suggestions, explain the trade-offs, and acknowledge good decisions. Use a tiered approach: critical issues (bugs, security) must be fixed, suggestions are optional, and nits are for style. Encourage junior developers to explain their reasoning before suggesting changes. Pair programming or whiteboarding sessions can be more effective than written comments for complex architectural decisions.",
+            "requirement_ids": [
+              "r3"
+            ]
+          },
+          {
+            "id": "f5",
+            "front": "What are the best practices for managing infrastructure as code using Terraform on AWS, particularly when dealing with microservices and Kubernetes?",
+            "back": "Use modular Terraform code with clear separation of concerns (networking, compute, storage). Implement state management with remote backends (S3 + DynamoDB locking) to prevent conflicts. Use workspaces or separate state files for different environments (dev, staging, prod). For Kubernetes, use the Terraform AWS provider to manage EKS clusters and the Helm provider to deploy charts. Ensure proper tagging and cost allocation tags for resource tracking.",
+            "requirement_ids": [
+              "r4"
+            ]
+          },
+          {
+            "id": "f6",
+            "front": "How would you design a TypeScript API client that can handle dynamic data from multiple external sources (e.g., Stripe, Postgres) while maintaining type safety?",
+            "back": "Use generics and discriminated unions to model the different data sources. Create a base interface for common fields (e.g., id, timestamp) and extend it with source-specific interfaces. Use a factory function or a registry pattern to instantiate the correct client based on the source. Implement runtime validation using libraries like Zod or Joi to ensure that the data received from external sources matches the expected TypeScript types, providing a safe bridge between dynamic data and static types.",
+            "requirement_ids": [
+              "r1",
+              "r2"
+            ]
+          },
+          {
+            "id": "f7",
+            "front": "What strategies can you use to optimize the performance of a React dashboard that displays real-time analytics data from multiple sources?",
+            "back": "Use virtualization for large lists (e.g., react-window) to render only visible items. Debounce or throttle data updates to prevent overwhelming the UI. Use Web Workers for heavy data processing (e.g., aggregating analytics data) to keep the main thread free. Implement lazy loading for components that are not immediately visible. Use React Suspense to handle asynchronous data fetching gracefully. Consider using a canvas-based charting library for high-frequency data updates.",
             "requirement_ids": [
               "r1"
+            ]
+          },
+          {
+            "id": "f8",
+            "front": "How do you ensure that a Node.js microservice is resilient to failures in its dependencies (e.g., database, message broker, external APIs)?",
+            "back": "Implement circuit breakers to prevent cascading failures. Use retries with exponential backoff for transient errors. Set appropriate timeouts for all external calls. Use health checks and readiness probes to ensure the service is only routed to when it is ready. Implement graceful shutdown to handle in-flight requests. Use a service mesh (like Istio) for advanced traffic management and observability. Log and monitor all failures to identify patterns and improve reliability.",
+            "requirement_ids": [
+              "r2"
             ]
           }
         ],
@@ -189,35 +277,38 @@
               "day": 1,
               "focus": "Core Must-Have Requirements & Technical Fundamentals",
               "question_ids": [
-                "q6",
-                "q5"
+                "q8",
+                "q11",
+                "q6"
               ],
-              "minutes": 50
+              "minutes": 65
             },
             {
               "day": 2,
-              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "focus": "System Architecture, Scalability & Design Trade-offs",
               "question_ids": [
-                "q2",
-                "q1"
+                "q10",
+                "q13",
+                "q12"
               ],
-              "minutes": 50
+              "minutes": 65
             },
             {
               "day": 3,
-              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "focus": "System Architecture, Scalability & Design Trade-offs",
               "question_ids": [
-                "q10",
-                "q9"
+                "q2",
+                "q9",
+                "q4"
               ],
-              "minutes": 50
+              "minutes": 65
             },
             {
               "day": 4,
-              "focus": "Leadership, Collaboration & Scenario-Based Questions",
+              "focus": "Deep-Dive Technical Implementation & Problem Solving",
               "question_ids": [
-                "q4",
-                "q3"
+                "q3",
+                "q1"
               ],
               "minutes": 50
             },
@@ -225,19 +316,16 @@
               "day": 5,
               "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
               "question_ids": [
-                "q8",
-                "q7"
+                "q7",
+                "q5"
               ],
               "minutes": 50
             }
           ]
         },
         "coverage": {
-          "uncovered_requirement_ids": [
-            "r3",
-            "r4"
-          ],
-          "passes": 2
+          "uncovered_requirement_ids": [],
+          "passes": 1
         }
       },
       "error": null
@@ -252,50 +340,34 @@
           "role": "Backend Developer",
           "location": "Not Specified",
           "jd_chars": 46,
-          "researched_at": "2026-09-11T16:43:18.601Z",
+          "researched_at": "2026-09-11T17:12:26.382Z",
           "pages_used": [
             "https://example.com/"
           ]
         },
         "company_brief": {
-          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
-          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "summary": "Company information was not discoverable from the provided website.",
+          "what_they_do": "The domain is a placeholder used for documentation examples and does not represent an active business entity.",
           "sources": [
-            "https://example.com"
+            "https://example.com/"
           ]
         },
         "role": {
           "title": "Backend Developer",
-          "seniority": "Mid-Level",
-          "responsibilities": [
-            "Develop and maintain scalable software solutions",
-            "Collaborate with cross-functional product and design teams",
-            "Write clean, well-tested, and maintainable code"
-          ],
+          "seniority": "Not Specified",
+          "responsibilities": [],
           "requirements": [
             {
               "id": "r1",
-              "text": "Core software engineering and architecture experience",
+              "text": "Must know Python",
               "kind": "technical",
               "priority": "must"
             },
             {
               "id": "r2",
-              "text": "API design, database modeling, and backend systems",
+              "text": "Must know Docker",
               "kind": "technical",
               "priority": "must"
-            },
-            {
-              "id": "r3",
-              "text": "Effective technical communication and team collaboration",
-              "kind": "behavioural",
-              "priority": "must"
-            },
-            {
-              "id": "r4",
-              "text": "Experience with cloud infrastructure and deployment",
-              "kind": "domain",
-              "priority": "nice"
             }
           ]
         },
@@ -306,38 +378,39 @@
               "r1"
             ],
             "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
-            "difficulty": 2
+            "prompt": "In Python, what is the difference between a list and a tuple, and in what scenarios would you choose one over the other for a backend API response?",
+            "answer_outline": "A strong candidate should explain that lists are mutable and tuples are immutable. They should mention that tuples are generally faster and more memory-efficient. For API responses, tuples might be preferred for fixed structures, while lists are better for dynamic data. They should also discuss how serialization (e.g., JSON) treats both similarly but with different implications for data integrity.",
+            "difficulty": 1
           },
           {
             "id": "q2",
             "requirement_ids": [
-              "r2"
+              "r1"
             ],
             "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
+            "prompt": "How does Python's garbage collection work, and what are the implications for long-running backend services?",
+            "answer_outline": "The candidate should describe Python's reference counting and cyclic garbage collector. They should discuss how memory leaks can occur in long-running services and how to mitigate them, such as by using weak references or ensuring proper cleanup of resources. They should also mention tools like `gc` module and `tracemalloc` for debugging memory issues.",
+            "difficulty": 2
           },
           {
             "id": "q3",
             "requirement_ids": [
-              "r1"
+              "r2"
             ],
-            "category": "behavioural",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "category": "technical",
+            "prompt": "Explain the difference between a Docker image and a Docker container. How would you optimize a Docker image for a Python backend service?",
+            "answer_outline": "The candidate should clarify that an image is a template and a container is a running instance. For optimization, they should mention using multi-stage builds, choosing lightweight base images (e.g., `python:3.9-slim`), minimizing layers, and using `.dockerignore` to exclude unnecessary files. They should also discuss the importance of pinning dependency versions for reproducibility.",
             "difficulty": 2
           },
           {
             "id": "q4",
             "requirement_ids": [
+              "r1",
               "r2"
             ],
-            "category": "behavioural",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "category": "technical",
+            "prompt": "How would you structure a Python backend application to be easily containerized with Docker, and what are the key considerations for environment management?",
+            "answer_outline": "The candidate should discuss using a modular structure with clear separation of concerns (e.g., `app/`, `tests/`, `requirements.txt`). They should mention using environment variables for configuration and tools like `docker-compose` for local development. Key considerations include ensuring the application is stateless, using a virtual environment, and managing secrets securely (e.g., via Docker secrets or external secret managers).",
             "difficulty": 3
           },
           {
@@ -345,9 +418,9 @@
             "requirement_ids": [
               "r1"
             ],
-            "category": "system-design",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "category": "behavioural",
+            "prompt": "Tell me about a time when you had to refactor a complex Python codebase. What was the primary motivation, and how did you ensure that the refactoring process did not introduce new bugs or disrupt the team's workflow?",
+            "answer_outline": "A strong candidate would describe a specific instance of refactoring a Python project, explaining the motivation (e.g., improving performance, enhancing readability, or addressing technical debt). They should detail their approach to minimizing risk, such as writing comprehensive tests, using version control effectively, and communicating changes to the team. The candidate should also mention how they validated the refactored code and any lessons learned from the experience.",
             "difficulty": 2
           },
           {
@@ -355,49 +428,62 @@
             "requirement_ids": [
               "r2"
             ],
+            "category": "behavioural",
+            "prompt": "Describe a situation where you had to troubleshoot a Docker-related issue in a production environment. What steps did you take to diagnose and resolve the problem, and how did you communicate with your team during the process?",
+            "answer_outline": "A strong candidate would provide a detailed account of a Docker issue they encountered in production, such as container crashes, network issues, or resource constraints. They should outline their diagnostic process, including the use of Docker logs, inspecting container configurations, and checking resource usage. The candidate should also explain how they kept the team informed, coordinated with other stakeholders, and implemented a solution to resolve the issue effectively.",
+            "difficulty": 2
+          },
+          {
+            "id": "q7",
+            "requirement_ids": [
+              "r1",
+              "r2"
+            ],
+            "category": "behavioural",
+            "prompt": "Have you ever had to mentor a junior developer in using Python and Docker? How did you approach the mentoring process, and what strategies did you use to ensure they gained a solid understanding of both technologies?",
+            "answer_outline": "A strong candidate would share an experience of mentoring a junior developer, focusing on their approach to teaching Python and Docker. They should describe how they tailored their mentoring to the junior developer's learning style, provided practical exercises, and encouraged hands-on practice. The candidate should also mention how they assessed the junior developer's progress and offered constructive feedback to help them improve.",
+            "difficulty": 3
+          },
+          {
+            "id": "q8",
+            "requirement_ids": [
+              "r1"
+            ],
+            "category": "system-design",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q9",
+            "requirement_ids": [
+              "r2"
+            ],
             "category": "system-design",
             "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
             "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
             "difficulty": 3
           },
           {
-            "id": "q7",
-            "requirement_ids": [
-              "r1"
-            ],
-            "category": "company-fit",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
-            "difficulty": 2
-          },
-          {
-            "id": "q8",
-            "requirement_ids": [
-              "r2"
-            ],
-            "category": "company-fit",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
-          },
-          {
-            "id": "q9",
-            "requirement_ids": [
-              "r1"
-            ],
-            "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
-            "difficulty": 2
-          },
-          {
             "id": "q10",
             "requirement_ids": [
+              "r1",
               "r2"
             ],
-            "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "category": "company-fit",
+            "prompt": "Given that our backend stack relies heavily on Python and Docker, how do you approach maintaining consistency between your local development environment and our production deployment pipeline? Specifically, how do you handle dependency management and environment variables to ensure that a service built locally behaves identically when containerized and deployed?",
+            "answer_outline": "A strong candidate should discuss using a single source of truth for dependencies (e.g., `requirements.txt` or `poetry.lock`/`Pipfile.lock`) that is referenced by both local setups and the Dockerfile. They should mention using `.env` files or environment variable injection strategies that are consistent across local and containerized environments. They should also touch on the importance of pinning versions to avoid 'works on my machine' issues and how they verify that the Docker image builds successfully in CI/CD before deployment.",
+            "difficulty": 2
+          },
+          {
+            "id": "q11",
+            "requirement_ids": [
+              "r1",
+              "r2"
+            ],
+            "category": "company-fit",
+            "prompt": "In our team, we value rapid iteration and reliable deployments. If you were to onboard to our backend team, how would you structure your initial Python project setup within a Dockerized environment to ensure that new features can be developed, tested, and deployed with minimal friction? What specific tools or practices would you implement to streamline this workflow?",
+            "answer_outline": "The candidate should outline a practical workflow: initializing a Python project with a clear directory structure, setting up a Dockerfile with multi-stage builds for efficiency, and integrating a test runner (like pytest) into the Docker container for isolated testing. They should mention using Docker Compose for local service orchestration (e.g., database, API) to mimic production. They should also discuss CI/CD integration, such as using GitHub Actions or GitLab CI to build and test the Docker image on every push, ensuring that the code is always deployable.",
             "difficulty": 3
           }
         ],
@@ -426,41 +512,39 @@
               "day": 1,
               "focus": "Core Must-Have Requirements & Technical Fundamentals",
               "question_ids": [
-                "q6",
-                "q4",
-                "q1",
-                "q7"
+                "q9",
+                "q11",
+                "q3",
+                "q10"
               ],
               "minutes": 80
             },
             {
               "day": 2,
-              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "focus": "System Architecture, Scalability & Design Trade-offs",
               "question_ids": [
-                "q2",
+                "q4",
                 "q8",
-                "q9"
+                "q5",
+                "q1"
               ],
-              "minutes": 65
+              "minutes": 80
             },
             {
               "day": 3,
               "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
               "question_ids": [
-                "q10",
-                "q5",
-                "q3"
+                "q7",
+                "q2",
+                "q6"
               ],
               "minutes": 65
             }
           ]
         },
         "coverage": {
-          "uncovered_requirement_ids": [
-            "r3",
-            "r4"
-          ],
-          "passes": 2
+          "uncovered_requirement_ids": [],
+          "passes": 1
         }
       },
       "error": null
@@ -475,50 +559,46 @@
           "role": "Frontend Engineer",
           "location": "Not Specified",
           "jd_chars": 155,
-          "researched_at": "2026-09-11T16:43:19.792Z",
+          "researched_at": "2026-09-11T17:14:18.473Z",
           "pages_used": [
             "https://this-company-domain-does-not-exist-404-test.xyz"
           ]
         },
         "company_brief": {
-          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
-          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "summary": "Company information was not discoverable from the provided website. No details regarding the company's mission, products, or interview process are available for interview preparation.",
+          "what_they_do": "Unknown. The provided domain does not exist or is unreachable, and no content was crawled.",
           "sources": [
-            "https://example.com"
+            "https://this-company-domain-does-not-exist-404-test.xyz"
           ]
         },
         "role": {
           "title": "Frontend Engineer",
-          "seniority": "Mid-Level",
-          "responsibilities": [
-            "Develop and maintain scalable software solutions",
-            "Collaborate with cross-functional product and design teams",
-            "Write clean, well-tested, and maintainable code"
-          ],
+          "seniority": "Not Specified",
+          "responsibilities": [],
           "requirements": [
             {
               "id": "r1",
-              "text": "Core software engineering and architecture experience",
+              "text": "Strong experience with modern CSS",
               "kind": "technical",
               "priority": "must"
             },
             {
               "id": "r2",
-              "text": "API design, database modeling, and backend systems",
+              "text": "Strong experience with Tailwind",
               "kind": "technical",
               "priority": "must"
             },
             {
               "id": "r3",
-              "text": "Effective technical communication and team collaboration",
-              "kind": "behavioural",
+              "text": "Strong experience with React performance optimization",
+              "kind": "technical",
               "priority": "must"
             },
             {
               "id": "r4",
-              "text": "Experience with cloud infrastructure and deployment",
-              "kind": "domain",
-              "priority": "nice"
+              "text": "Experience with accessibility standards (WCAG)",
+              "kind": "technical",
+              "priority": "must"
             }
           ]
         },
@@ -526,41 +606,43 @@
           {
             "id": "q1",
             "requirement_ids": [
-              "r1"
+              "r1",
+              "r2"
             ],
             "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "prompt": "Compare the approach to styling a complex, responsive dashboard component using pure modern CSS (e.g., Grid, Flexbox, Container Queries) versus using Tailwind CSS. What are the specific trade-offs in terms of maintainability, bundle size, and developer experience?",
+            "answer_outline": "A strong candidate should discuss: 1) The utility-first approach of Tailwind vs. component-based or BEM in pure CSS. 2) How Tailwind's JIT compiler and purging affects bundle size compared to a full CSS framework. 3) The role of Container Queries in modern CSS for responsive design within components vs. media queries. 4) Maintainability: Tailwind reduces class naming debates but can lead to 'class soup'; pure CSS allows for more semantic class names but requires strict discipline. 5) Developer experience: Tailwind speeds up prototyping, while pure CSS offers more granular control over complex animations or pseudo-elements without arbitrary values.",
             "difficulty": 2
           },
           {
             "id": "q2",
             "requirement_ids": [
-              "r2"
+              "r3"
             ],
             "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "prompt": "Describe a scenario where a React application experienced significant rendering performance issues. How would you diagnose the root cause, and what specific optimization techniques (e.g., memoization, code splitting, virtualization) would you apply to resolve it?",
+            "answer_outline": "A strong candidate should cover: 1) Diagnosis: Using React DevTools Profiler to identify re-renders, long tasks, and expensive components. 2) Memoization: Correct use of React.memo, useMemo, and useCallback, and understanding when they are unnecessary or harmful. 3) Code Splitting: Using React.lazy and Suspense for route-based or component-based lazy loading. 4) Virtualization: Implementing libraries like react-window or react-virtualized for long lists. 5) State Management: Avoiding unnecessary state updates by normalizing state or using selectors (e.g., in Redux). 6) Concurrency: Using React 18 features like useTransition or useDeferredValue for non-urgent updates.",
             "difficulty": 3
           },
           {
             "id": "q3",
             "requirement_ids": [
-              "r1"
+              "r4"
             ],
-            "category": "behavioural",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "category": "technical",
+            "prompt": "How do you ensure that a custom React component, such as a modal dialog or a complex form, is fully accessible according to WCAG 2.1 standards? Specifically, address keyboard navigation, ARIA attributes, and screen reader compatibility.",
+            "answer_outline": "A strong candidate should detail: 1) Keyboard Navigation: Ensuring all interactive elements are focusable, implementing focus trapping in modals, and managing focus restoration when the modal closes. 2) ARIA Attributes: Correct use of role='dialog', aria-modal='true', aria-labelledby, and aria-describedby. 3) Screen Reader Compatibility: Ensuring dynamic content updates are announced using aria-live regions. 4) Form Accessibility: Properly associating labels with inputs, providing clear error messages linked via aria-describedby, and ensuring sufficient color contrast. 5) Testing: Using automated tools (axe-core) and manual testing with screen readers (NVDA, VoiceOver).",
             "difficulty": 2
           },
           {
             "id": "q4",
             "requirement_ids": [
-              "r2"
+              "r1",
+              "r3"
             ],
-            "category": "behavioural",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "category": "technical",
+            "prompt": "Explain how modern CSS features like `:has()` selector and CSS Nesting can impact React component design and performance. How do these features change the way you structure your components and styles?",
+            "answer_outline": "A strong candidate should discuss: 1) `:has()` Selector: How it enables parent-based styling, reducing the need for extra wrapper divs or state in React to manage class names for parent elements. 2) CSS Nesting: How it allows for more modular and readable styles within components, potentially reducing the need for complex class naming conventions. 3) Performance Impact: Reducing DOM complexity by eliminating unnecessary wrapper elements, which can improve rendering performance. 4) React Integration: How these CSS features can simplify the logic in React components by offloading some conditional styling to CSS, rather than using JavaScript to toggle classes.",
             "difficulty": 3
           },
           {
@@ -568,7 +650,7 @@
             "requirement_ids": [
               "r1"
             ],
-            "category": "system-design",
+            "category": "behavioural",
             "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
             "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
             "difficulty": 2
@@ -578,7 +660,7 @@
             "requirement_ids": [
               "r2"
             ],
-            "category": "system-design",
+            "category": "behavioural",
             "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
             "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
             "difficulty": 3
@@ -588,7 +670,7 @@
             "requirement_ids": [
               "r1"
             ],
-            "category": "company-fit",
+            "category": "system-design",
             "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
             "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
             "difficulty": 2
@@ -598,7 +680,7 @@
             "requirement_ids": [
               "r2"
             ],
-            "category": "company-fit",
+            "category": "system-design",
             "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
             "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
             "difficulty": 3
@@ -606,39 +688,100 @@
           {
             "id": "q9",
             "requirement_ids": [
+              "r2",
               "r1"
             ],
-            "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "category": "company-fit",
+            "prompt": "Given that we rely heavily on Tailwind CSS for rapid UI development, how do you approach maintaining design consistency and preventing 'class soup' in a large-scale codebase? Specifically, how do you balance the utility-first approach with the need for maintainable, semantic components?",
+            "answer_outline": "A strong candidate should discuss strategies such as creating a design system or component library that wraps Tailwind utilities, using custom plugins or config extensions to enforce brand tokens, and leveraging code review processes to ensure consistency. They should acknowledge the trade-off between speed (Tailwind) and maintainability, proposing solutions like strict linting rules for class usage or abstracting complex patterns into reusable components.",
             "difficulty": 2
           },
           {
             "id": "q10",
             "requirement_ids": [
+              "r3",
+              "r4"
+            ],
+            "category": "company-fit",
+            "prompt": "Our users include individuals with varying levels of technical proficiency and accessibility needs. How do you prioritize performance optimizations (like code splitting or memoization) when they might conflict with accessibility features (like screen reader compatibility or focus management)? Can you give an example of how you’ve navigated such a trade-off?",
+            "answer_outline": "The candidate should demonstrate an understanding that accessibility is non-negotiable and often takes precedence over minor performance gains. They should provide a concrete example, such as ensuring that lazy-loaded components maintain proper focus states for keyboard users or that virtualized lists (for performance) still expose correct ARIA attributes. They should emphasize testing with assistive technologies and collaborating with UX/design teams to ensure inclusive experiences.",
+            "difficulty": 3
+          },
+          {
+            "id": "q11",
+            "requirement_ids": [
+              "r1",
               "r2"
             ],
-            "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
+            "category": "company-fit",
+            "prompt": "Imagine we are building a new dashboard feature with complex data visualizations. How would you decide when to use pure CSS/Tailwind for styling versus when to introduce a more robust CSS-in-JS solution or a dedicated charting library? What factors would influence your decision in our context?",
+            "answer_outline": "A strong answer should consider factors like bundle size, rendering performance, interactivity requirements, and maintainability. The candidate should explain that for static or simple dynamic styles, Tailwind/CSS is preferred for speed and consistency. For highly dynamic, state-driven visualizations, a library like D3 or Recharts might be necessary, but they should discuss how to integrate it seamlessly with the existing Tailwind-based design system. They should also mention the importance of keeping the styling approach consistent across the app to avoid fragmentation.",
+            "difficulty": 2
           }
         ],
         "flashcards": [
           {
             "id": "f1",
-            "front": "What are ACID properties in database transactions?",
-            "back": "Atomicity, Consistency, Isolation, and Durability ensure reliable transaction processing.",
+            "front": "What are the key benefits of using CSS Grid over Flexbox for complex layouts?",
+            "back": "CSS Grid is a two-dimensional layout system, allowing control over both rows and columns simultaneously. It is ideal for page-level layouts and complex grids, whereas Flexbox is one-dimensional (row or column) and better suited for aligning items within a single axis.",
+            "requirement_ids": [
+              "r1"
+            ]
+          },
+          {
+            "id": "f2",
+            "front": "How does Tailwind CSS handle responsive design, and what is the mobile-first approach?",
+            "back": "Tailwind uses utility classes with responsive prefixes (e.g., `md:`, `lg:`) to apply styles at specific breakpoints. The mobile-first approach means styles are defined for small screens by default, and media queries are used to add or override styles for larger screens.",
             "requirement_ids": [
               "r2"
             ]
           },
           {
-            "id": "f2",
-            "front": "Explain the difference between horizontal and vertical scaling.",
-            "back": "Horizontal adds more machines/nodes; Vertical adds more resources (CPU/RAM) to existing machine.",
+            "id": "f3",
+            "front": "What is React.memo, and when should it be used?",
+            "back": "React.memo is a higher-order component that memoizes the rendered output of a function component. It prevents unnecessary re-renders if the component's props have not changed, improving performance in lists or complex component trees.",
             "requirement_ids": [
-              "r1"
+              "r3"
+            ]
+          },
+          {
+            "id": "f4",
+            "front": "Explain the purpose of the `useCallback` hook in React.",
+            "back": "`useCallback` returns a memoized callback function that only changes when its dependencies change. It is used to prevent unnecessary re-renders of child components that rely on function props, especially when combined with `React.memo`.",
+            "requirement_ids": [
+              "r3"
+            ]
+          },
+          {
+            "id": "f5",
+            "front": "What are the key principles of WCAG 2.1 for accessible web content?",
+            "back": "WCAG 2.1 is based on four principles: Perceivable (content can be perceived by all users), Operable (interface is operable by all users), Understandable (content and operation are understandable), and Robust (content is robust enough to be interpreted by a wide variety of user agents, including assistive technologies).",
+            "requirement_ids": [
+              "r4"
+            ]
+          },
+          {
+            "id": "f6",
+            "front": "How can you ensure keyboard accessibility for custom interactive components?",
+            "back": "Ensure all interactive elements are focusable, support keyboard navigation (e.g., Tab, Enter, Space), and provide visible focus indicators. Use ARIA attributes (e.g., `role`, `aria-label`) to convey semantic meaning to screen readers.",
+            "requirement_ids": [
+              "r4"
+            ]
+          },
+          {
+            "id": "f7",
+            "front": "What is the difference between `useMemo` and `useCallback` in React?",
+            "back": "`useMemo` memoizes a computed value, while `useCallback` memoizes a function. Both prevent unnecessary recalculations or re-creations, but `useMemo` is used for values, and `useCallback` is used for functions.",
+            "requirement_ids": [
+              "r3"
+            ]
+          },
+          {
+            "id": "f8",
+            "front": "How does Tailwind CSS improve developer productivity compared to traditional CSS?",
+            "back": "Tailwind provides a comprehensive set of utility classes that allow developers to style elements directly in the markup, reducing the need to write custom CSS. It promotes consistency, speeds up development, and simplifies responsive design with built-in breakpoints.",
+            "requirement_ids": [
+              "r2"
             ]
           }
         ],
@@ -649,9 +792,9 @@
               "day": 1,
               "focus": "Core Must-Have Requirements & Technical Fundamentals",
               "question_ids": [
-                "q6",
                 "q8",
-                "q3"
+                "q10",
+                "q5"
               ],
               "minutes": 65
             },
@@ -660,8 +803,8 @@
               "focus": "System Architecture, Scalability & Design Trade-offs",
               "question_ids": [
                 "q2",
-                "q5",
-                "q7"
+                "q7",
+                "q9"
               ],
               "minutes": 65
             },
@@ -669,28 +812,26 @@
               "day": 3,
               "focus": "Deep-Dive Technical Implementation & Problem Solving",
               "question_ids": [
-                "q10",
-                "q1"
+                "q4",
+                "q1",
+                "q11"
               ],
-              "minutes": 50
+              "minutes": 65
             },
             {
               "day": 4,
               "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
               "question_ids": [
-                "q4",
-                "q9"
+                "q6",
+                "q3"
               ],
               "minutes": 50
             }
           ]
         },
         "coverage": {
-          "uncovered_requirement_ids": [
-            "r3",
-            "r4"
-          ],
-          "passes": 2
+          "uncovered_requirement_ids": [],
+          "passes": 1
         }
       },
       "error": null
@@ -705,7 +846,7 @@
           "role": "DevOps Engineer",
           "location": "Not Specified",
           "jd_chars": 145,
-          "researched_at": "2026-09-11T16:43:22.718Z",
+          "researched_at": "2026-09-11T17:18:42.462Z",
           "pages_used": [
             "https://about.gitlab.com/",
             "https://about.gitlab.com/assessments/devops-modernization-assessment/",
@@ -714,44 +855,37 @@
           ]
         },
         "company_brief": {
-          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
-          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "summary": "GitLab is a leading provider of a single, integrated DevSecOps platform that covers the entire software development lifecycle, from planning and source control to CI/CD and security. The company is currently heavily focused on 'Agentic software engineering,' leveraging its GitLab Duo Agent Platform to allow AI agents to automate tasks like code review and vulnerability remediation under human-defined guardrails. For an interview, candidates should emphasize experience with unified development workflows, the consolidation of fragmented toolchains, and the strategic value of integrating AI and security directly into the development pipeline rather than as afterthoughts. The company positions itself as a solution to reduce 'toolchain tax' and accelerate time-to-market through automation and standardization.",
+          "what_they_do": "GitLab provides a single application for the entire DevSecOps lifecycle, including issue tracking, source control, CI/CD, and security scanning (SAST, DAST, SCA). Their current strategic focus is on the GitLab Duo Agent Platform, which enables AI agents to execute tasks within the software lifecycle (such as turning issues into merge requests or remediating vulnerabilities) while teams orchestrate and set guardrails. They also offer assessments for DevOps, Security, and AI modernization to help clients measure maturity and ROI, citing significant productivity gains and cost savings from consolidating tools.",
           "sources": [
-            "https://example.com"
+            "https://about.gitlab.com/",
+            "https://about.gitlab.com/assessments/devops-modernization-assessment/",
+            "https://about.gitlab.com/assessments/security-modernization-assessment/",
+            "https://about.gitlab.com/assessments/ai-modernization-assessment/"
           ]
         },
         "role": {
           "title": "DevOps Engineer",
-          "seniority": "Mid-Level",
-          "responsibilities": [
-            "Develop and maintain scalable software solutions",
-            "Collaborate with cross-functional product and design teams",
-            "Write clean, well-tested, and maintainable code"
-          ],
+          "seniority": "Not Specified",
+          "responsibilities": [],
           "requirements": [
             {
               "id": "r1",
-              "text": "Core software engineering and architecture experience",
+              "text": "CI/CD automation with GitHub Actions",
               "kind": "technical",
               "priority": "must"
             },
             {
               "id": "r2",
-              "text": "API design, database modeling, and backend systems",
+              "text": "Linux system administration",
               "kind": "technical",
               "priority": "must"
             },
             {
               "id": "r3",
-              "text": "Effective technical communication and team collaboration",
-              "kind": "behavioural",
+              "text": "Infrastructure security hardening",
+              "kind": "technical",
               "priority": "must"
-            },
-            {
-              "id": "r4",
-              "text": "Experience with cloud infrastructure and deployment",
-              "kind": "domain",
-              "priority": "nice"
             }
           ]
         },
@@ -759,119 +893,198 @@
           {
             "id": "q1",
             "requirement_ids": [
-              "r1"
+              "r1",
+              "r3"
             ],
             "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "prompt": "In the context of GitLab's focus on integrated DevSecOps, how would you design a CI/CD pipeline using GitHub Actions that not only automates deployment but also enforces infrastructure security hardening checks before any code reaches production? Specifically, how do you handle the integration of security scanning tools within the pipeline to ensure they act as gatekeepers rather than afterthoughts?",
+            "answer_outline": "A strong candidate should describe a pipeline structure where security checks (e.g., SAST, DAST, container scanning) are integrated as mandatory steps in the CI workflow. They should mention using GitHub Actions for orchestration, configuring secrets securely, and implementing fail-fast mechanisms. Crucially, they should discuss how to automate infrastructure hardening (e.g., using Ansible or Terraform with security policies) and how to enforce these checks via branch protection rules or required status checks, aligning with the 'shift-left' security philosophy.",
             "difficulty": 2
           },
           {
             "id": "q2",
             "requirement_ids": [
-              "r2"
+              "r2",
+              "r3"
             ],
             "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "prompt": "You are tasked with hardening a Linux-based CI/CD runner environment that is exposed to multiple internal services. Describe your approach to Linux system administration in this context. How do you balance the need for performance and automation with strict security hardening standards, such as minimizing attack surface and managing user permissions?",
+            "answer_outline": "The candidate should outline specific Linux hardening techniques: disabling unnecessary services, configuring firewall rules (iptables/nftables), enforcing least-privilege access via sudoers or RBAC, and using immutable infrastructure or containerized runners to reduce statefulness. They should discuss monitoring and logging (e.g., auditd) for security compliance. The answer should reflect an understanding of how a hardened Linux environment supports secure, automated CI/CD operations without introducing excessive friction for developers.",
             "difficulty": 3
           },
           {
             "id": "q3",
             "requirement_ids": [
-              "r1"
+              "r1",
+              "r2"
             ],
-            "category": "behavioural",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "category": "technical",
+            "prompt": "GitLab emphasizes reducing 'toolchain tax' by consolidating fragmented tools. If you were migrating a legacy CI/CD setup from Jenkins to GitHub Actions on a Linux infrastructure, what key technical challenges would you anticipate, and how would you ensure that the new setup maintains or improves upon the existing automation and system administration practices?",
+            "answer_outline": "The candidate should identify challenges such as plugin compatibility, secret management migration, and runner configuration differences. They should propose a phased migration strategy, leveraging Linux system administration skills to optimize runner performance (e.g., resource allocation, caching). They should emphasize how GitHub Actions' native integrations and GitHub's ecosystem can reduce toolchain fragmentation, and how to maintain security and reliability during the transition, aligning with GitLab's goal of streamlined, integrated workflows.",
             "difficulty": 2
           },
           {
             "id": "q4",
             "requirement_ids": [
-              "r2"
+              "r1"
             ],
             "category": "behavioural",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
+            "prompt": "Tell me about a time you had to integrate a new CI/CD automation tool, such as GitHub Actions, into an existing development workflow. How did you manage the transition, and what was the impact on the team's velocity?",
+            "answer_outline": "A strong candidate will describe a specific instance of introducing a new CI/CD tool. They should outline the steps taken to assess the current workflow, the communication strategy used to manage stakeholder expectations, and the technical steps involved in the migration. They should also discuss how they measured the impact on the team's velocity, such as reduced build times or improved deployment frequency, and how they addressed any resistance or challenges encountered during the transition.",
+            "difficulty": 2
           },
           {
             "id": "q5",
             "requirement_ids": [
-              "r1"
+              "r2"
             ],
-            "category": "system-design",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
-            "difficulty": 2
+            "category": "behavioural",
+            "prompt": "Describe a situation where you had to troubleshoot a complex Linux system administration issue that was impacting a critical service. How did you approach the problem, and what was the outcome?",
+            "answer_outline": "A strong candidate will provide a detailed account of a challenging Linux system administration issue. They should explain the symptoms, the diagnostic steps they took (e.g., using tools like `top`, `htop`, `strace`, `dmesg`), and the root cause they identified. They should also discuss the solution they implemented, how they verified the fix, and any preventive measures they put in place to avoid similar issues in the future.",
+            "difficulty": 3
           },
           {
             "id": "q6",
             "requirement_ids": [
-              "r2"
+              "r3"
             ],
-            "category": "system-design",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
+            "category": "behavioural",
+            "prompt": "Share an experience where you had to implement infrastructure security hardening measures. How did you balance the need for security with the team's need for operational efficiency?",
+            "answer_outline": "A strong candidate will describe a specific project where they implemented security hardening measures, such as configuring firewalls, managing access controls, or applying security patches. They should explain how they assessed the security risks, the specific hardening steps they took, and how they communicated the changes to the team. They should also discuss how they balanced security requirements with operational efficiency, such as by automating security checks or providing clear documentation to minimize friction.",
+            "difficulty": 2
           },
           {
             "id": "q7",
             "requirement_ids": [
-              "r1"
+              "r1",
+              "r3"
             ],
-            "category": "company-fit",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
-            "difficulty": 2
+            "category": "system-design",
+            "prompt": "Design a CI/CD pipeline architecture that integrates security scanning directly into the build process, moving away from post-deployment audits. How would you structure this to minimize 'toolchain tax' and ensure that security checks do not become a bottleneck for developer velocity?",
+            "answer_outline": "A strong candidate should propose a shift-left security model where static analysis (SAST) and dependency scanning occur in early pipeline stages. They should discuss using a unified platform (like GitLab) to consolidate tools rather than chaining disparate SaaS solutions. Key points include: parallelizing security scans with build steps, caching results to reduce latency, and implementing fail-fast mechanisms. They should also address how to manage secrets securely within the pipeline and how to provide actionable feedback to developers to reduce remediation time.",
+            "difficulty": 3
           },
           {
             "id": "q8",
             "requirement_ids": [
-              "r2"
+              "r2",
+              "r3"
             ],
-            "category": "company-fit",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "category": "system-design",
+            "prompt": "You are tasked with designing a scalable, hardened Linux infrastructure for running CI/CD runners in a multi-tenant environment. How would you architect the runner nodes to ensure isolation, security hardening, and efficient resource utilization while maintaining low overhead for ephemeral builds?",
+            "answer_outline": "The candidate should discuss using containerized runners (e.g., Docker-in-Docker or Kaniko) for isolation and speed. They must detail Linux hardening practices: minimal base images, disabling unnecessary services, enforcing file permissions, and using namespaces/cgroups for resource limits. For multi-tenancy, they should propose network segmentation and strict access controls. They should also address the trade-off between pre-warmed pools (for speed) and on-demand scaling (for cost), and how to securely manage credentials and artifacts in this environment.",
             "difficulty": 3
           },
           {
             "id": "q9",
             "requirement_ids": [
-              "r1"
+              "r1",
+              "r2"
             ],
-            "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "category": "system-design",
+            "prompt": "Design a system for automating the provisioning and configuration of Linux build servers that integrates seamlessly with a CI/CD platform. How would you ensure that the infrastructure state is reproducible and that the system can scale elastically based on pipeline demand?",
+            "answer_outline": "The candidate should propose Infrastructure as Code (IaC) using tools like Terraform or Ansible to manage Linux server state. They should describe an auto-scaling group strategy where runners are spun up on demand and terminated after use to reduce cost. Key elements include: using a golden image or container for consistent environments, integrating with the CI/CD platform's API for dynamic runner registration, and implementing health checks and monitoring to detect and replace failed nodes. They should also discuss how to handle stateful data (e.g., caches) in an ephemeral environment.",
             "difficulty": 2
           },
           {
             "id": "q10",
             "requirement_ids": [
-              "r2"
+              "r1"
             ],
-            "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "category": "company-fit",
+            "prompt": "GitLab positions itself as a solution to reduce 'toolchain tax' by consolidating fragmented tools into a single platform. You have experience with CI/CD automation using GitHub Actions. How would you approach migrating a complex, multi-service pipeline from GitHub Actions to GitLab CI/CD, and what specific strategies would you use to ensure that the migration actually reduces cognitive load and improves developer velocity rather than just moving the same complexity to a new tool?",
+            "answer_outline": "A strong candidate should demonstrate an understanding of the 'unified workflow' value proposition. They should discuss mapping GitHub Actions concepts (jobs, steps, matrix strategies) to GitLab CI/CD (stages, jobs, rules). Crucially, they should highlight opportunities for consolidation, such as replacing external linting or testing tools with GitLab's native SAST/DAST or Code Quality features to reduce tool sprawl. They should mention leveraging GitLab's dependency scanning and container registry integration to streamline the build process. The answer should emphasize that the goal is not just 1:1 translation, but leveraging GitLab's integrated nature to simplify the pipeline, reduce configuration overhead, and improve visibility across the entire SDLC.",
+            "difficulty": 2
+          },
+          {
+            "id": "q11",
+            "requirement_ids": [
+              "r2",
+              "r3"
+            ],
+            "category": "company-fit",
+            "prompt": "GitLab Duo Agent Platform allows AI agents to automate tasks like vulnerability remediation under human-defined guardrails. Given your background in Linux system administration and infrastructure security hardening, how would you design the 'guardrails' for an AI agent tasked with automatically patching critical vulnerabilities in a production Linux environment? How does this approach align with GitLab's philosophy of integrating security directly into the development pipeline rather than treating it as an afterthought?",
+            "answer_outline": "The candidate should outline a robust framework for AI agent safety, including: 1) Strict permission scoping (least privilege) for the agent's Linux access, 2) Mandatory human-in-the-loop approval for production changes, 3) Automated rollback mechanisms if the patch causes instability, and 4) Comprehensive logging and audit trails. They should connect this to GitLab's DevSecOps philosophy by explaining how shifting security left (via automated scanning and AI-assisted remediation) reduces mean time to remediation (MTTR) and prevents vulnerabilities from reaching production. The answer should show an understanding that AI agents are force multipliers for security, not replacements for human oversight, and that integrating these agents into the CI/CD pipeline ensures security is a continuous, automated part of the workflow.",
             "difficulty": 3
+          },
+          {
+            "id": "q12",
+            "requirement_ids": [
+              "r1",
+              "r2",
+              "r3"
+            ],
+            "category": "company-fit",
+            "prompt": "Imagine you are tasked with standardizing the DevOps toolchain for a team currently using a fragmented set of tools: GitHub Actions for CI, a separate tool for security scanning, and manual Linux administration scripts. How would you propose consolidating these into a GitLab-centric workflow? Specifically, how would you leverage GitLab's integrated features for CI/CD, security, and infrastructure management to accelerate time-to-market and reduce the operational burden on the team?",
+            "answer_outline": "The candidate should present a clear migration and consolidation strategy. They should identify specific GitLab features that replace the fragmented tools: GitLab CI/CD for GitHub Actions, GitLab SAST/DAST/Dependency Scanning for the separate security tool, and GitLab AutodevOps or Terraform integration for infrastructure management. They should emphasize the benefits of a single source of truth (GitLab) for code, CI/CD, and security, which reduces context switching and improves traceability. The answer should highlight how this consolidation enables faster feedback loops, easier onboarding for new developers, and a more secure, auditable pipeline. It should also touch on the cultural shift required to embrace a unified platform and how it aligns with GitLab's mission to reduce toolchain tax and accelerate delivery.",
+            "difficulty": 2
           }
         ],
         "flashcards": [
           {
             "id": "f1",
-            "front": "What are ACID properties in database transactions?",
-            "back": "Atomicity, Consistency, Isolation, and Durability ensure reliable transaction processing.",
+            "front": "How do you structure a basic CI/CD pipeline in GitHub Actions to automate testing and deployment?",
+            "back": "Define a workflow file in `.github/workflows/`. Use `on: [push, pull_request]` for triggers. Define `jobs` with `runs-on: ubuntu-latest`. Use `steps` to checkout code (`actions/checkout@v4`), set up the runtime (e.g., Node, Python), run tests, and deploy. Ensure secrets are referenced via `${{ secrets.X }}`.",
+            "requirement_ids": [
+              "r1"
+            ]
+          },
+          {
+            "id": "f2",
+            "front": "What are the key components of a GitHub Actions workflow file?",
+            "back": "1. `name`: Workflow name. 2. `on`: Triggers (push, PR, schedule). 3. `jobs`: Map of job IDs. 4. `runs-on`: Runner environment. 5. `steps`: List of actions (uses or run). 6. `needs`: Job dependencies. 7. `if`: Conditional execution.",
+            "requirement_ids": [
+              "r1"
+            ]
+          },
+          {
+            "id": "f3",
+            "front": "How do you manage secrets securely in GitHub Actions?",
+            "back": "Store secrets in the repository or organization settings under 'Secrets and variables'. Reference them in workflows using `${{ secrets.SECRET_NAME }}`. Never hardcode secrets in YAML. Use environment-specific secrets for different environments (prod, staging).",
+            "requirement_ids": [
+              "r1",
+              "r3"
+            ]
+          },
+          {
+            "id": "f4",
+            "front": "What are essential Linux system administration tasks for a DevOps engineer?",
+            "back": "User management (`useradd`, `usermod`), file permissions (`chmod`, `chown`), process management (`ps`, `top`, `kill`), package management (`apt`, `yum`), log analysis (`journalctl`, `grep`), and system updates (`apt upgrade`).",
             "requirement_ids": [
               "r2"
             ]
           },
           {
-            "id": "f2",
-            "front": "Explain the difference between horizontal and vertical scaling.",
-            "back": "Horizontal adds more machines/nodes; Vertical adds more resources (CPU/RAM) to existing machine.",
+            "id": "f5",
+            "front": "How do you troubleshoot a Linux system with high CPU usage?",
+            "back": "1. Use `top` or `htop` to identify the process. 2. Use `ps aux | sort -k 3 -nr | head` to list top CPU consumers. 3. Check if it's a known application or a runaway process. 4. Use `strace` or `perf` for deeper analysis if needed. 5. Consider scaling or optimizing the application.",
             "requirement_ids": [
-              "r1"
+              "r2"
+            ]
+          },
+          {
+            "id": "f6",
+            "front": "What are the key steps to harden a Linux server for security?",
+            "back": "1. Disable unnecessary services. 2. Configure firewall (`ufw` or `iptables`). 3. Disable root login and use SSH keys only. 4. Update packages regularly. 5. Configure fail2ban. 6. Set up audit logging. 7. Apply CIS benchmarks.",
+            "requirement_ids": [
+              "r3"
+            ]
+          },
+          {
+            "id": "f7",
+            "front": "How do you configure SSH for secure access on a Linux server?",
+            "back": "Edit `/etc/ssh/sshd_config`: Set `PermitRootLogin no`, `PasswordAuthentication no`, `PubkeyAuthentication yes`. Generate SSH key pairs on client and server. Copy public key to `~/.ssh/authorized_keys` on server. Restart SSH service.",
+            "requirement_ids": [
+              "r3",
+              "r2"
+            ]
+          },
+          {
+            "id": "f8",
+            "front": "What is the role of a firewall in infrastructure security hardening?",
+            "back": "A firewall controls incoming and outgoing network traffic based on predetermined rules. It blocks unauthorized access, restricts open ports, and can mitigate DDoS attacks. Use `ufw` for simple setups or `iptables`/`nftables` for advanced configurations.",
+            "requirement_ids": [
+              "r3"
             ]
           }
         ],
@@ -882,27 +1095,26 @@
               "day": 1,
               "focus": "Intensive Review: Core Technical, Architecture & Behavioral Alignment",
               "question_ids": [
-                "q6",
-                "q2",
-                "q10",
-                "q4",
+                "q7",
                 "q8",
+                "q2",
                 "q5",
-                "q1",
+                "q11",
                 "q9",
+                "q1",
                 "q3",
-                "q7"
+                "q4",
+                "q6",
+                "q10",
+                "q12"
               ],
-              "minutes": 150
+              "minutes": 180
             }
           ]
         },
         "coverage": {
-          "uncovered_requirement_ids": [
-            "r3",
-            "r4"
-          ],
-          "passes": 2
+          "uncovered_requirement_ids": [],
+          "passes": 1
         }
       },
       "error": null
@@ -917,50 +1129,37 @@
           "role": "Software Engineer",
           "location": "Not Specified",
           "jd_chars": 109,
-          "researched_at": "2026-09-11T16:43:23.728Z",
+          "researched_at": "2026-09-11T17:21:59.516Z",
           "pages_used": [
             "http://localhost:8099/mock-company"
           ]
         },
         "company_brief": {
-          "summary": "Technology company focused on building modern digital products and developer infrastructure.",
-          "what_they_do": "Designs, develops, and delivers software and digital services.",
+          "summary": "Company information was not discoverable from the provided website. The URL provided is a local development address (localhost), which is not accessible from the public internet. No details regarding the company's mission, products, or interview process could be verified.",
+          "what_they_do": "Unknown. No public information is available for this local/private URL.",
           "sources": [
-            "https://example.com"
+            "http://localhost:8099/mock-company"
           ]
         },
         "role": {
           "title": "Software Engineer",
-          "seniority": "Mid-Level",
+          "seniority": "Not Specified",
           "responsibilities": [
-            "Develop and maintain scalable software solutions",
-            "Collaborate with cross-functional product and design teams",
-            "Write clean, well-tested, and maintainable code"
+            "Building REST APIs with Express",
+            "Writing automated tests with Jest or Vitest"
           ],
           "requirements": [
             {
               "id": "r1",
-              "text": "Core software engineering and architecture experience",
+              "text": "Experience building REST APIs with Express",
               "kind": "technical",
               "priority": "must"
             },
             {
               "id": "r2",
-              "text": "API design, database modeling, and backend systems",
+              "text": "Experience writing automated tests with Jest or Vitest",
               "kind": "technical",
               "priority": "must"
-            },
-            {
-              "id": "r3",
-              "text": "Effective technical communication and team collaboration",
-              "kind": "behavioural",
-              "priority": "must"
-            },
-            {
-              "id": "r4",
-              "text": "Experience with cloud infrastructure and deployment",
-              "kind": "domain",
-              "priority": "nice"
             }
           ]
         },
@@ -971,8 +1170,8 @@
               "r1"
             ],
             "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "prompt": "When designing a REST API using Express, how do you handle middleware for error handling and request validation? Can you walk through a scenario where you implemented this in a production environment?",
+            "answer_outline": "A strong candidate would discuss the use of Express middleware for centralized error handling, such as creating a custom error-handling middleware that catches errors and returns consistent JSON responses. They should mention request validation using libraries like express-validator or Joi, and how to structure the middleware pipeline to ensure validation occurs before route handlers. They might also touch on logging, rate limiting, and security headers as part of the middleware stack. A production scenario could involve handling database errors, input validation failures, and ensuring that sensitive information is not leaked in error responses.",
             "difficulty": 2
           },
           {
@@ -981,23 +1180,34 @@
               "r2"
             ],
             "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
+            "prompt": "Describe your approach to writing automated tests for a Node.js application using Jest or Vitest. How do you decide what to unit test versus what to integration test?",
+            "answer_outline": "A strong candidate would explain the difference between unit tests (isolated functions or modules) and integration tests (multiple components working together). They should mention using Jest or Vitest features like mocking dependencies, testing asynchronous code, and using fixtures or factories for test data. They might discuss the testing pyramid, where the majority of tests are unit tests, with fewer integration and end-to-end tests. They should also touch on code coverage, test isolation, and how to keep tests fast and reliable. A strong answer would include examples of mocking external services like databases or APIs.",
+            "difficulty": 2
           },
           {
             "id": "q3",
             "requirement_ids": [
-              "r1"
+              "r1",
+              "r2"
             ],
-            "category": "behavioural",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
-            "difficulty": 2
+            "category": "technical",
+            "prompt": "You are tasked with building a REST API endpoint in Express that processes user data and you need to ensure it is well-tested. How would you structure the endpoint, handle potential errors, and write tests to cover both success and failure scenarios?",
+            "answer_outline": "A strong candidate would outline the structure of the Express endpoint, including route definition, middleware for validation, and the controller logic. They should discuss error handling strategies, such as try-catch blocks, custom error classes, and a global error-handling middleware. For testing, they would describe writing unit tests for the controller logic, integration tests for the endpoint using supertest, and how to mock dependencies. They should cover testing success cases (e.g., valid input returns expected output) and failure cases (e.g., invalid input returns appropriate error codes and messages). They might also mention edge cases like network timeouts or database failures.",
+            "difficulty": 3
           },
           {
             "id": "q4",
             "requirement_ids": [
+              "r1"
+            ],
+            "category": "behavioural",
+            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
+            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "difficulty": 2
+          },
+          {
+            "id": "q5",
+            "requirement_ids": [
               "r2"
             ],
             "category": "behavioural",
@@ -1006,81 +1216,123 @@
             "difficulty": 3
           },
           {
-            "id": "q5",
+            "id": "q6",
             "requirement_ids": [
               "r1"
             ],
             "category": "system-design",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "prompt": "Design a scalable REST API service using Express.js to handle high-volume user profile data. How would you structure the application layers (routing, controllers, services, data access) to ensure maintainability and testability? Discuss how you would handle common REST concerns like versioning, error handling, and rate limiting within this architecture.",
+            "answer_outline": "A strong candidate should propose a layered architecture (e.g., MVC or Clean Architecture) separating concerns between routes, controllers, business logic, and data access. They should discuss middleware usage for cross-cutting concerns like authentication, logging, and rate limiting. They should mention strategies for API versioning (URI vs Header) and a consistent error response format. They should also address how to structure the Express app for modularity, allowing for easy unit testing of individual layers.",
             "difficulty": 2
-          },
-          {
-            "id": "q6",
-            "requirement_ids": [
-              "r2"
-            ],
-            "category": "system-design",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
           },
           {
             "id": "q7",
             "requirement_ids": [
-              "r1"
+              "r1",
+              "r2"
             ],
-            "category": "company-fit",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
-            "difficulty": 2
+            "category": "system-design",
+            "prompt": "Consider an Express-based microservice that processes payment transactions. How would you design the system to ensure reliability and idempotency? Specifically, how would you integrate automated testing strategies (using Jest or Vitest) to verify both the functional correctness of the API endpoints and the resilience of the system against duplicate requests or partial failures?",
+            "answer_outline": "The candidate should discuss idempotency keys and how to store them (e.g., in a database or cache) to prevent duplicate processing. They should outline a testing strategy that includes unit tests for business logic, integration tests for API endpoints (mocking external dependencies), and potentially contract tests. They should mention how to test failure scenarios, such as network timeouts or database connection issues, and how to verify that the system handles retries correctly without side effects. They should also discuss the use of test doubles (mocks, stubs) to isolate components during testing.",
+            "difficulty": 3
           },
           {
             "id": "q8",
             "requirement_ids": [
-              "r2"
+              "r1"
             ],
             "category": "company-fit",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
-            "difficulty": 3
+            "prompt": "Since we are a fast-paced startup, we often need to ship features quickly while maintaining code quality. How do you approach building a new REST API endpoint in Express to ensure it is both rapid to develop and robust enough to handle production traffic without extensive refactoring later?",
+            "answer_outline": "A strong candidate should discuss a balance between speed and quality. They should mention using standard Express middleware for error handling and validation (e.g., express-validator or Joi) to keep the route handlers clean. They should also highlight the importance of writing unit tests (linking to r2) before or during development to ensure the endpoint behaves as expected, allowing for quick iteration without fear of breaking existing functionality. They might also mention using environment variables for configuration to make deployment smooth.",
+            "difficulty": 2
           },
           {
             "id": "q9",
             "requirement_ids": [
-              "r1"
+              "r2"
             ],
-            "category": "technical",
-            "prompt": "How do you structure code for modularity, testability, and long-term maintenance?",
-            "answer_outline": "Explain separation of concerns, dependency injection, and comprehensive unit testing.",
+            "category": "company-fit",
+            "prompt": "In our team, we value reliability and clear communication. If you were to write automated tests for a complex business logic module using Jest or Vitest, how would you structure your test suite to ensure it is easy for other engineers to understand and maintain, especially during code reviews?",
+            "answer_outline": "The candidate should emphasize clarity and maintainability. They should mention using descriptive test names that explain the behavior being tested (e.g., 'should return 400 if email is invalid'). They should discuss the use of mocking to isolate the unit under test, ensuring that tests are fast and reliable. They should also mention the importance of covering edge cases and error scenarios, not just the happy path, to demonstrate a thorough approach to quality assurance that aligns with a collaborative team culture.",
             "difficulty": 2
           },
           {
             "id": "q10",
             "requirement_ids": [
+              "r1",
               "r2"
             ],
-            "category": "technical",
-            "prompt": "Describe your approach to designing resilient APIs and handling system failures.",
-            "answer_outline": "Discuss idempotency, rate limiting, circuit breakers, and structured logging.",
+            "category": "company-fit",
+            "prompt": "Imagine you are working on a critical feature that involves a new Express API endpoint. You notice that the existing test coverage for the related service layer is low. How would you balance the pressure to deliver the feature on time with the need to ensure long-term stability through proper testing?",
+            "answer_outline": "This question tests prioritization and communication skills. A strong candidate would advocate for writing tests for the new code first (TDD or BDD approach) to ensure the new feature is solid. They would then propose a plan to incrementally add tests for the existing service layer, perhaps starting with the most critical paths. They should demonstrate an ability to communicate the risks of low test coverage to stakeholders and propose a realistic timeline that balances immediate delivery with technical debt reduction.",
             "difficulty": 3
           }
         ],
         "flashcards": [
           {
             "id": "f1",
-            "front": "What are ACID properties in database transactions?",
-            "back": "Atomicity, Consistency, Isolation, and Durability ensure reliable transaction processing.",
+            "front": "How do you structure a basic Express route to handle a GET request and return JSON?",
+            "back": "Use `app.get('/path', (req, res) => { res.json({ message: 'Success' }); });`. Ensure `express.json()` middleware is used if parsing request bodies, and always handle errors with `next(err)` or try/catch blocks.",
+            "requirement_ids": [
+              "r1"
+            ]
+          },
+          {
+            "id": "f2",
+            "front": "What is the purpose of middleware in Express, and how do you create a custom one?",
+            "back": "Middleware functions have access to the request object (`req`), response object (`res`), and the next function in the application's request-response cycle. Create one with `function(req, res, next) { ... next(); }` and register it with `app.use()`. It is used for tasks like logging, authentication, or parsing data.",
+            "requirement_ids": [
+              "r1"
+            ]
+          },
+          {
+            "id": "f3",
+            "front": "How do you handle asynchronous errors in Express route handlers?",
+            "back": "Wrap async logic in `try/catch` blocks and call `next(error)` inside the catch block. Alternatively, use a wrapper function that catches rejected promises. Express 5+ handles async errors automatically, but in Express 4, manual error forwarding is required to trigger the error-handling middleware.",
+            "requirement_ids": [
+              "r1"
+            ]
+          },
+          {
+            "id": "f4",
+            "front": "What is the difference between `supertest` and direct `fetch`/`axios` calls when testing Express APIs?",
+            "back": "`supertest` is designed for testing HTTP servers by simulating requests without needing to start a live server on a port (it uses an ephemeral port). It integrates seamlessly with Jest/Vitest and provides a chainable API for assertions, making it the standard for integration testing Express apps.",
+            "requirement_ids": [
+              "r1",
+              "r2"
+            ]
+          },
+          {
+            "id": "f5",
+            "front": "How do you mock an external dependency (e.g., a database or API) in Jest?",
+            "back": "Use `jest.mock('module-name')` to auto-mock, or `jest.spyOn(object, 'method').mockReturnValue(value)` for specific methods. For manual mocks, create a `__mocks__` folder. This isolates the unit under test and ensures tests are fast and deterministic.",
             "requirement_ids": [
               "r2"
             ]
           },
           {
-            "id": "f2",
-            "front": "Explain the difference between horizontal and vertical scaling.",
-            "back": "Horizontal adds more machines/nodes; Vertical adds more resources (CPU/RAM) to existing machine.",
+            "id": "f6",
+            "front": "What are the key lifecycle hooks in Jest, and when should you use `beforeEach` vs `beforeAll`?",
+            "back": "Key hooks: `beforeAll`, `beforeEach`, `afterEach`, `afterAll`. Use `beforeAll` for one-time setup (e.g., connecting to a test DB). Use `beforeEach` to reset state before each test case (e.g., clearing mocks, resetting variables) to ensure test independence.",
             "requirement_ids": [
-              "r1"
+              "r2"
+            ]
+          },
+          {
+            "id": "f7",
+            "front": "How do you assert that a function was called with specific arguments in Jest?",
+            "back": "Use `expect(mockFn).toHaveBeenCalledWith(arg1, arg2)`. For multiple calls, use `expect(mockFn).toHaveBeenLastCalledWith(...)` or check `mockFn.mock.calls` array. This is crucial for verifying side effects in unit tests.",
+            "requirement_ids": [
+              "r2"
+            ]
+          },
+          {
+            "id": "f8",
+            "front": "What is the recommended testing strategy for an Express API endpoint?",
+            "back": "Use a combination of unit tests (for pure logic/services) and integration tests (using `supertest` to test the full HTTP flow including routing, middleware, and database interactions). Focus on behavior (status codes, response body) rather than implementation details.",
+            "requirement_ids": [
+              "r1",
+              "r2"
             ]
           }
         ],
@@ -1091,8 +1343,8 @@
               "day": 1,
               "focus": "Core Must-Have Requirements & Technical Fundamentals",
               "question_ids": [
-                "q6",
-                "q9"
+                "q7",
+                "q4"
               ],
               "minutes": 50
             },
@@ -1100,17 +1352,17 @@
               "day": 2,
               "focus": "Deep-Dive Technical Implementation & Problem Solving",
               "question_ids": [
-                "q2",
-                "q3"
+                "q3",
+                "q8"
               ],
               "minutes": 50
             },
             {
               "day": 3,
-              "focus": "Deep-Dive Technical Implementation & Problem Solving",
+              "focus": "Leadership, Collaboration & Scenario-Based Questions",
               "question_ids": [
-                "q10",
-                "q7"
+                "q5",
+                "q9"
               ],
               "minutes": 50
             },
@@ -1118,23 +1370,23 @@
               "day": 4,
               "focus": "Leadership, Collaboration & Scenario-Based Questions",
               "question_ids": [
-                "q4"
+                "q10"
               ],
               "minutes": 35
             },
             {
               "day": 5,
-              "focus": "Leadership, Collaboration & Scenario-Based Questions",
+              "focus": "System Architecture, Scalability & Design Trade-offs",
               "question_ids": [
-                "q8"
+                "q6"
               ],
               "minutes": 35
             },
             {
               "day": 6,
-              "focus": "System Architecture, Scalability & Design Trade-offs",
+              "focus": "Deep-Dive Technical Implementation & Problem Solving",
               "question_ids": [
-                "q5"
+                "q1"
               ],
               "minutes": 35
             },
@@ -1142,18 +1394,15 @@
               "day": 7,
               "focus": "Company Fit, Behavioral Stories & Final Interview Readiness",
               "question_ids": [
-                "q1"
+                "q2"
               ],
               "minutes": 35
             }
           ]
         },
         "coverage": {
-          "uncovered_requirement_ids": [
-            "r3",
-            "r4"
-          ],
-          "passes": 2
+          "uncovered_requirement_ids": [],
+          "passes": 1
         }
       },
       "error": null
