@@ -16,7 +16,6 @@
     "evaluate": "npm --workspace=server run evaluate --"
   },
   "devDependencies": {
-    "@esbuild/win32-x64": "^0.28.2",
     "concurrently": "^8.2.2"
   }
 }
