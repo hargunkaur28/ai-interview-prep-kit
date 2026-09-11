@@ -55,7 +55,7 @@ describe('Groq Token Budget & OTPM Scheduling Safeguards', () => {
 
     // Even if actual completion tokens is smaller (e.g. 150),
     // the OTPM rolling window retains the conservative reservation
-    scheduler.recordActualUsage(res.id, 150);
+    scheduler.recordActualUsage(res.reservationId, 150);
     expect(scheduler.getActiveReservedTokens()).toBe(450);
   });
 
