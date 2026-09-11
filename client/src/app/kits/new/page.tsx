@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
-import { fetchApi } from '@/lib/api';
 import {
   ArrowLeft,
   Sparkles,
@@ -160,14 +159,14 @@ export default function NewKitPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#090A0F]">
+    <div className="min-h-screen flex flex-col bg-[#F8F9FD] dark:bg-[#090A0F] transition-colors duration-150">
       <Navbar />
 
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         {/* Back Link */}
         <Link
           href="/dashboard"
-          className="inline-flex items-center space-x-2 text-xs text-slate-400 hover:text-slate-200 transition-colors mb-6"
+          className="inline-flex items-center space-x-2 text-xs text-slate-600 hover:text-violet-600 dark:text-slate-400 dark:hover:text-slate-200 transition-colors mb-6"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Dashboard</span>
@@ -175,42 +174,44 @@ export default function NewKitPage() {
 
         {isGenerating ? (
           /* Page 4: Real-time Generation Progress Screen */
-          <div className="max-w-2xl mx-auto bg-[#10121B] border border-[#212330] rounded-xl p-8 shadow-2xl">
-            <div className="flex items-center justify-between pb-6 border-b border-[#1F2130]">
+          <div className="max-w-2xl mx-auto bg-white dark:bg-[#10121B] border border-slate-200/90 dark:border-[#212330] rounded-2xl p-6 sm:p-8 shadow-xl">
+            <div className="flex items-center justify-between pb-6 border-b border-slate-200 dark:border-[#1F2130]">
               <div>
-                <h2 className="text-xl font-bold text-white tracking-tight">Generating Interview Kit</h2>
-                <p className="text-xs text-slate-400 mt-1">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+                  Generating Interview Kit
+                </h2>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
                   Executing deliberate 10-stage research and generation pipeline.
                 </p>
               </div>
               <div className="flex items-center space-x-2">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-violet-600"></span>
                 </span>
-                <span className="text-xs font-mono text-indigo-400">Processing</span>
+                <span className="text-xs font-mono text-violet-600 dark:text-violet-400 font-medium">Processing</span>
               </div>
             </div>
 
             {/* Stages Stepper */}
-            <div className="divide-y divide-[#1B1D2B] my-6">
+            <div className="divide-y divide-slate-100 dark:divide-[#1B1D2B] my-6">
               {stages.map((st) => (
                 <div key={st.stage} className="py-3.5 flex items-start space-x-3.5">
                   <div className="mt-0.5">
                     {st.status === 'completed' && (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
                     )}
                     {st.status === 'running' && (
-                      <Loader2 className="w-4 h-4 text-indigo-400 animate-spin" />
+                      <Loader2 className="w-4 h-4 text-violet-600 dark:text-violet-400 animate-spin" />
                     )}
                     {st.status === 'warning' && (
-                      <AlertTriangle className="w-4 h-4 text-amber-400" />
+                      <AlertTriangle className="w-4 h-4 text-amber-500 dark:text-amber-400" />
                     )}
                     {st.status === 'failed' && (
-                      <AlertTriangle className="w-4 h-4 text-red-400" />
+                      <AlertTriangle className="w-4 h-4 text-rose-500 dark:text-rose-400" />
                     )}
                     {st.status === 'pending' && (
-                      <div className="w-4 h-4 rounded-full border border-slate-700 bg-slate-900" />
+                      <div className="w-4 h-4 rounded-full border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-900" />
                     )}
                   </div>
 
@@ -219,22 +220,24 @@ export default function NewKitPage() {
                       <p
                         className={`text-xs font-medium ${
                           st.status === 'completed'
-                            ? 'text-slate-200'
+                            ? 'text-slate-800 dark:text-slate-200'
                             : st.status === 'running'
-                            ? 'text-indigo-300 font-semibold'
+                            ? 'text-violet-600 dark:text-violet-300 font-semibold'
                             : st.status === 'warning'
-                            ? 'text-amber-300'
-                            : 'text-slate-500'
+                            ? 'text-amber-600 dark:text-amber-300 font-medium'
+                            : st.status === 'failed'
+                            ? 'text-rose-600 dark:text-rose-400 font-medium'
+                            : 'text-slate-400 dark:text-slate-500'
                         }`}
                       >
                         {st.label}
                       </p>
-                      <span className="text-[10px] font-mono text-slate-500 uppercase">
+                      <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 uppercase">
                         {st.status}
                       </span>
                     </div>
                     {st.message && (
-                      <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">
+                      <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5 line-clamp-1">
                         {st.message}
                       </p>
                     )}
@@ -243,7 +246,7 @@ export default function NewKitPage() {
               ))}
             </div>
 
-            <p className="text-[11px] text-slate-500 text-center pt-2 border-t border-[#1F2130]">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 text-center pt-3 border-t border-slate-200 dark:border-[#1F2130]">
               This usually completes within 30 to 60 seconds depending on site structure.
             </p>
           </div>
@@ -251,16 +254,18 @@ export default function NewKitPage() {
           /* Page 3: Two-column Input Form */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Input Form */}
-            <div className="lg:col-span-8 bg-[#10121B] border border-[#212330] rounded-xl p-6 sm:p-8 shadow-sm">
-              <div className="pb-6 border-b border-[#1F2130]">
-                <h1 className="text-xl font-bold text-white tracking-tight">Create Interview Kit</h1>
-                <p className="text-xs text-slate-400 mt-1">
+            <div className="lg:col-span-8 bg-white dark:bg-[#10121B] border border-slate-200/90 dark:border-[#212330] rounded-2xl p-6 sm:p-8 shadow-sm">
+              <div className="pb-6 border-b border-slate-200 dark:border-[#1F2130]">
+                <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+                  Create Interview Kit
+                </h1>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
                   Paste the role description and company site. The pipeline will discover hiring process details and generate your study plan.
                 </p>
               </div>
 
               {generalError && (
-                <div className="my-5 p-3 rounded-md bg-red-500/10 border border-red-500/30 text-xs text-red-400">
+                <div className="my-5 p-3 rounded-xl bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/30 text-xs text-rose-700 dark:text-rose-400">
                   {generalError}
                 </div>
               )}
@@ -269,11 +274,11 @@ export default function NewKitPage() {
                 {/* Job Description Textarea */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <label className="text-xs font-semibold text-slate-200 flex items-center space-x-1.5">
-                      <FileText className="w-3.5 h-3.5 text-indigo-400" />
+                    <label className="text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center space-x-1.5">
+                      <FileText className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />
                       <span>Job Description</span>
                     </label>
-                    <span className="text-[11px] text-slate-500">
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">
                       {jd.length} characters
                     </span>
                   </div>
@@ -283,15 +288,15 @@ export default function NewKitPage() {
                     value={jd}
                     onChange={(e) => setJd(e.target.value)}
                     placeholder="Paste the complete job description text here (responsibilities, required skills, preferred qualifications)..."
-                    className="w-full bg-[#0A0B10] border border-[#262838] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-md p-3.5 text-xs sm:text-sm text-slate-100 placeholder:text-slate-600 outline-none transition-colors resize-y leading-relaxed font-mono"
+                    className="w-full bg-slate-50/60 dark:bg-[#0A0B10] border border-slate-300 dark:border-[#262838] focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 rounded-xl p-3.5 text-xs sm:text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600 outline-none transition-colors resize-y leading-relaxed font-mono"
                   />
                 </div>
 
                 {/* Company Website & Days Inputs */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-semibold text-slate-200 flex items-center space-x-1.5 mb-2">
-                      <Globe className="w-3.5 h-3.5 text-indigo-400" />
+                    <label className="text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center space-x-1.5 mb-2">
+                      <Globe className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />
                       <span>Company Website URL</span>
                     </label>
                     <input
@@ -299,16 +304,16 @@ export default function NewKitPage() {
                       value={companyUrl}
                       onChange={(e) => setCompanyUrl(e.target.value)}
                       placeholder="https://company.com"
-                      className="w-full bg-[#0A0B10] border border-[#262838] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-md py-2 px-3 text-xs sm:text-sm text-slate-100 placeholder:text-slate-600 outline-none transition-colors"
+                      className="w-full bg-slate-50/60 dark:bg-[#0A0B10] border border-slate-300 dark:border-[#262838] focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 rounded-xl py-2.5 px-3 text-xs sm:text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600 outline-none transition-colors"
                     />
-                    <p className="text-[11px] text-slate-500 mt-1">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5">
                       Crawler will rank internal hiring and career links automatically.
                     </p>
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-200 flex items-center space-x-1.5 mb-2">
-                      <Calendar className="w-3.5 h-3.5 text-indigo-400" />
+                    <label className="text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center space-x-1.5 mb-2">
+                      <Calendar className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />
                       <span>Days Until Interview</span>
                     </label>
                     <input
@@ -318,9 +323,9 @@ export default function NewKitPage() {
                       required
                       value={days}
                       onChange={(e) => setDays(parseInt(e.target.value, 10) || 5)}
-                      className="w-full bg-[#0A0B10] border border-[#262838] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-md py-2 px-3 text-xs sm:text-sm text-slate-100 outline-none transition-colors"
+                      className="w-full bg-slate-50/60 dark:bg-[#0A0B10] border border-slate-300 dark:border-[#262838] focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 rounded-xl py-2.5 px-3 text-xs sm:text-sm text-slate-900 dark:text-slate-100 outline-none transition-colors font-mono"
                     />
-                    <p className="text-[11px] text-slate-500 mt-1">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5">
                       Arithmetic allocates harder topics earlier across exactly this many days.
                     </p>
                   </div>
@@ -328,9 +333,9 @@ export default function NewKitPage() {
 
                 {/* Multi-role upload support */}
                 <div className="pt-2">
-                  <label className="inline-flex items-center space-x-2 text-xs text-slate-400 hover:text-slate-200 cursor-pointer border border-[#262838] hover:border-slate-600 rounded-md px-3 py-1.5 transition-colors">
-                    <Upload className="w-3.5 h-3.5 text-indigo-400" />
-                    <span>Upload Case File (.json)</span>
+                  <label className="inline-flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer border border-slate-300 dark:border-[#262838] hover:border-violet-400 dark:hover:border-slate-600 rounded-xl px-3.5 py-2 bg-slate-50/50 dark:bg-[#10121B] transition-colors">
+                    <Upload className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />
+                    <span className="font-medium">Upload Case File (.json)</span>
                     <input
                       type="file"
                       accept=".json"
@@ -339,16 +344,16 @@ export default function NewKitPage() {
                     />
                   </label>
                   {batchFileNote && (
-                    <span className="text-[11px] text-emerald-400 ml-3">
+                    <span className="text-[11px] text-emerald-600 dark:text-emerald-400 ml-3 font-medium">
                       ✓ {batchFileNote}
                     </span>
                   )}
                 </div>
 
-                <div className="pt-4 border-t border-[#1F2130] flex items-center justify-end">
+                <div className="pt-4 border-t border-slate-200 dark:border-[#1F2130] flex items-center justify-end">
                   <button
                     type="submit"
-                    className="flex items-center space-x-2 py-2.5 px-6 bg-indigo-600 hover:bg-indigo-500 text-white rounded-md text-xs sm:text-sm font-semibold transition-all shadow-md shadow-indigo-600/20 active:scale-[0.98]"
+                    className="btn-gradient flex items-center space-x-2 py-2.5 px-6 rounded-xl text-xs sm:text-sm font-semibold shadow-md shadow-violet-500/25 active:scale-[0.98]"
                   >
                     <Sparkles className="w-4 h-4" />
                     <span>Generate Interview Kit →</span>
@@ -358,58 +363,60 @@ export default function NewKitPage() {
             </div>
 
             {/* Right Column: Helpful Information */}
-            <div className="lg:col-span-4 bg-[#10121B] border border-[#212330] rounded-xl p-6 shadow-sm space-y-6">
+            <div className="lg:col-span-4 bg-white dark:bg-[#10121B] border border-slate-200/90 dark:border-[#212330] rounded-2xl p-6 shadow-sm space-y-6">
               <div>
-                <h3 className="text-sm font-semibold text-slate-200">How This Works</h3>
-                <p className="text-xs text-slate-400 mt-1">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+                  How This Works
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
                   A deliberate multi-step pipeline built to prevent hallucinations and guarantee coverage.
                 </p>
               </div>
 
               <div className="space-y-4 text-xs">
                 <div className="flex items-start space-x-3">
-                  <span className="font-mono text-indigo-400 font-bold">01</span>
+                  <span className="font-mono text-violet-600 dark:text-violet-400 font-bold text-sm">01</span>
                   <div>
-                    <h4 className="font-medium text-slate-200">Role Extraction</h4>
-                    <p className="text-slate-400 mt-0.5">
+                    <h4 className="font-medium text-slate-900 dark:text-slate-200">Role Extraction</h4>
+                    <p className="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                       Extracts structured must-have and nice-to-have requirements with stable sequential IDs.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <span className="font-mono text-indigo-400 font-bold">02</span>
+                  <span className="font-mono text-violet-600 dark:text-violet-400 font-bold text-sm">02</span>
                   <div>
-                    <h4 className="font-medium text-slate-200">Site Crawling & Research</h4>
-                    <p className="text-slate-400 mt-0.5">
+                    <h4 className="font-medium text-slate-900 dark:text-slate-200">Site Crawling & Research</h4>
+                    <p className="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                       Ranks discovered internal links (careers, handbook, blog) and searches public interview discussions.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <span className="font-mono text-indigo-400 font-bold">03</span>
+                  <span className="font-mono text-violet-600 dark:text-violet-400 font-bold text-sm">03</span>
                   <div>
-                    <h4 className="font-medium text-slate-200">Two-Pass Coverage Check</h4>
-                    <p className="text-slate-400 mt-0.5">
+                    <h4 className="font-medium text-slate-900 dark:text-slate-200">Two-Pass Coverage Check</h4>
+                    <p className="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                       Application code compares question requirement IDs against must-haves, triggering targeted Pass 2 generation for any gaps.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <span className="font-mono text-indigo-400 font-bold">04</span>
+                  <span className="font-mono text-violet-600 dark:text-violet-400 font-bold text-sm">04</span>
                   <div>
-                    <h4 className="font-medium text-slate-200">Arithmetic Day Planner</h4>
-                    <p className="text-slate-400 mt-0.5">
+                    <h4 className="font-medium text-slate-900 dark:text-slate-200">Arithmetic Day Planner</h4>
+                    <p className="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                       Distributes all material across exactly the requested days, scheduling higher-difficulty topics earlier.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-lg bg-[#0C0E15] border border-[#1E202E] text-[11px] text-slate-400">
-                <p className="font-medium text-slate-300 mb-1">💡 Preservation Guarantee</p>
+              <div className="p-3.5 rounded-xl bg-violet-50/80 dark:bg-[#0C0E15] border border-violet-200/80 dark:border-[#1E202E] text-[11px] text-slate-700 dark:text-slate-300">
+                <p className="font-semibold text-slate-900 dark:text-slate-200 mb-1">💡 Preservation Guarantee</p>
                 Once generated, you can edit, pin, or reorder any section. Regenerating a category will strictly preserve your custom and edited questions.
               </div>
             </div>

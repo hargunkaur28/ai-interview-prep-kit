@@ -72,19 +72,19 @@ export default function LandingPage() {
             {/* Logo + script subtitle */}
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center text-white font-bold text-base shadow-lg shadow-violet-500/20">
-                T
+                IPAI
               </div>
               <div className="flex flex-col leading-tight">
                 <div className="flex items-center gap-1.5">
                   <span className="font-sans text-sm font-bold tracking-[0.15em] uppercase text-slate-100">
-                    Trao
+                    Interview
                   </span>
                   <span className="font-sans text-sm font-light tracking-[0.15em] uppercase text-slate-400">
-                    Prep
+                    Prep AI
                   </span>
                 </div>
                 <span className="font-serif italic text-[11px] text-violet-300/60 -mt-0.5">
-                  celestial interview craft
+                  Interview preparation
                 </span>
               </div>
             </div>
@@ -109,24 +109,18 @@ export default function LandingPage() {
         </header>
 
         {/* ─── Main hero & auth container ──────────────────────────────── */}
-        <main className="flex-1 max-w-7xl mx-auto px-6 py-12 md:py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center w-full">
+        <main className="flex-1 max-w-7xl mx-auto px-6 py-1 md:py-1 lg:py-2 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center w-full">
           {/* Left column: Hero narrative */}
           <div className="lg:col-span-7 space-y-8">
             {/* Decorative sparkle */}
             <span className="sparkle sparkle-delay-2 text-violet-400/50 text-sm ml-16 block -mb-4">✦</span>
 
-            {/* Pipeline badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full badge-pipeline text-xs tracking-wide">
-              <Sparkles className="w-3.5 h-3.5 text-violet-400" />
-              <span className="text-violet-200 font-medium">Multi-Stage Autonomous Interview Pipeline</span>
-              <span className="sparkle text-amber-400/60 text-[10px]">✦</span>
-            </div>
 
             {/* Decorative sparkle */}
             <span className="sparkle sparkle-delay-3 text-violet-300/30 text-lg absolute right-[55%] mt-2 hidden lg:inline">◇</span>
 
             <div className="space-y-5">
-              <h1 className="text-[2.75rem] sm:text-[3.5rem] lg:text-[3.75rem] font-extrabold tracking-tight text-white leading-[1.1]">
+              <h1 className="text-[2.75rem] sm:text-[3.5rem] lg:text-[3.75rem] tracking-tight text-white leading-[1.1]">
                 Prepare{' '}
                 <span className="accent-italic">smarter.</span>
                 <br />
@@ -210,7 +204,7 @@ export default function LandingPage() {
                   </p>
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.15em] text-violet-400/40 font-medium whitespace-nowrap mt-1">
-                  Celestial Portal
+                  Your Portal
                 </span>
               </div>
 
@@ -322,9 +316,8 @@ export default function LandingPage() {
         <footer className="border-t border-white/[0.05] py-5 px-6">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-xs text-slate-600">
-              <span>© 2025 Trao Prep Inc.</span>
+              <span>© 2025 Interview Prep Inc.</span>
               <span className="text-violet-500/30">·</span>
-              <span className="font-serif italic text-violet-300/40">Crafted under starlight</span>
             </div>
             <div className="flex items-center gap-5 text-[11px] text-slate-600">
               <span className="hover:text-slate-400 cursor-pointer transition-colors">Privacy Policy</span>
